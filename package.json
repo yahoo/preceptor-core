@@ -1,0 +1,33 @@
+{
+    "name": "preceptor-core",
+    "version": "0.9.0",
+    "description": "Core components for the preceptor test-runner and aggregator",
+    "license": "MIT",
+    "main": "index.js",
+    "homepage": "https://github.com/yahoo/preceptor-core",
+    "bugs": "https://github.com/yahoo/preceptor-core/issues",
+    "author": {
+        "name": "Marcel Erz",
+        "email": "erz@yahoo-inc.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yahoo/preceptor-core.git"
+    },
+    "keywords": [
+        "testing"
+    ],
+    "scripts": {
+        "test": "istanbul cover -- _mocha --reporter spec",
+        "docs": "yuidoc ."
+    },
+    "dependencies": {
+        "underscore": "1.7.0"
+    },
+    "devDependencies": {
+        "chai": "1.9.1",
+        "istanbul": "0.3.2",
+        "mocha": "1.21.4",
+        "yuidocjs": "0.3.50"
+    }
+}
