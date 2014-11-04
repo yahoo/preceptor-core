@@ -1,0 +1,298 @@
+{
+    "project": {
+        "name": "preceptor-core",
+        "description": "Core components for the preceptor test-runner and aggregator",
+        "version": "0.9.0"
+    },
+    "files": {
+        "lib/base.js": {
+            "name": "lib/base.js",
+            "modules": {},
+            "classes": {
+                "Base": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/utils.js": {
+            "name": "lib/utils.js",
+            "modules": {},
+            "classes": {
+                "utils": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "index.js": {
+            "name": "index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Base": {
+            "name": "Base",
+            "shortname": "Base",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/base.js",
+            "line": 10,
+            "description": "Base object class",
+            "is_constructor": 1,
+            "itemtype": "property",
+            "type": "String"
+        },
+        "utils": {
+            "name": "utils",
+            "shortname": "utils",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/utils.js",
+            "line": 6
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/base.js",
+            "line": 22,
+            "description": "Used as method for parent-method calls",
+            "itemtype": "method",
+            "name": "__super",
+            "class": "Base"
+        },
+        {
+            "file": "lib/base.js",
+            "line": 29,
+            "description": "Name of instance for debugging purposes",
+            "itemtype": "property",
+            "name": "NAME",
+            "type": "{string}",
+            "class": "Base"
+        },
+        {
+            "file": "lib/base.js",
+            "line": 37,
+            "description": "Converts instance to string",
+            "itemtype": "method",
+            "name": "toString",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Base"
+        },
+        {
+            "file": "lib/base.js",
+            "line": 49,
+            "description": "Type of class",
+            "itemtype": "property",
+            "name": "TYPE",
+            "static": 1,
+            "type": "{string}",
+            "class": "Base"
+        },
+        {
+            "file": "lib/base.js",
+            "line": 58,
+            "description": "Extends the class with another class; implementing inheritance",
+            "itemtype": "method",
+            "name": "extend",
+            "static": 1,
+            "params": [
+                {
+                    "name": "constructorFn",
+                    "description": "",
+                    "type": "Function",
+                    "optional": true
+                },
+                {
+                    "name": "prototypeProperties",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "staticProperties",
+                    "description": "",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "Base"
+        },
+        {
+            "file": "lib/base.js",
+            "line": 108,
+            "description": "Static class conversion to string",
+            "itemtype": "method",
+            "name": "toString",
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Base"
+        },
+        {
+            "file": "lib/utils.js",
+            "line": 10,
+            "description": "An extend function that applies the result of a callback to each item",
+            "itemtype": "method",
+            "name": "extendApply",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "Destination object to merge into",
+                    "type": "Object"
+                },
+                {
+                    "name": "objects",
+                    "description": "Objects that should get merged into the destination object",
+                    "type": "Object[]"
+                },
+                {
+                    "name": "fn",
+                    "description": "Apply function for each item, returning the final result",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Destination object",
+                "type": "Object"
+            },
+            "class": "utils"
+        },
+        {
+            "file": "lib/utils.js",
+            "line": 38,
+            "description": "Deep-extend of an object",
+            "itemtype": "method",
+            "name": "deepExtend",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "objects",
+                    "description": "",
+                    "type": "Object[]"
+                },
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "replace",
+                            "description": "",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "false"
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "utils"
+        },
+        {
+            "file": "lib/utils.js",
+            "line": 72,
+            "description": "Wraps a function into another function that sets another function as the __super() function\nThis is used to wrap every single function of an object so that one can call\n\nthis.__super();\n\nto call its parent function that was overwritten.",
+            "itemtype": "method",
+            "name": "superWrapper",
+            "params": [
+                {
+                    "name": "currentItem",
+                    "description": "",
+                    "type": "*"
+                },
+                {
+                    "name": "previousItem",
+                    "description": "",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "class": "utils"
+        },
+        {
+            "file": "lib/utils.js",
+            "line": 109,
+            "description": "Combines multiple strings into one, making sure that the glue-string doesn't get applied when not required",
+            "itemtype": "method",
+            "name": "combine",
+            "params": [
+                {
+                    "name": "glue",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "str1",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "utils"
+        },
+        {
+            "file": "lib/utils.js",
+            "line": 133,
+            "description": "Turns a string into a filesystem safe filename",
+            "itemtype": "method",
+            "name": "fileNameSafe",
+            "params": [
+                {
+                    "name": "str",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "utils"
+        },
+        {
+            "file": "index.js",
+            "line": 11,
+            "description": "Version of the selenium server",
+            "type": "{string}",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nVersion of the selenium server",
+            "line": " index.js:11"
+        }
+    ]
+}
