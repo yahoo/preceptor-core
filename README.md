@@ -10,9 +10,9 @@ Shared library for the preceptor test-runner and aggregator.
 [![NPM](https://nodei.co/npm/preceptor-core.png?downloads=true)](https://nodei.co/npm/preceptor-core/)
 
 
-[API-Documentation](http://yahoo.github.io/hodman/docs/)
+[API-Documentation](http://yahoo.github.io/preceptor-core/docs/)
 
-[Coverage Report](http://yahoo.github.io/hodman/coverage/lcov-report/)
+[Coverage Report](http://yahoo.github.io/preceptor-core/coverage/lcov-report/)
 
 
 **Table of Contents**
