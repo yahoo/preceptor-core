@@ -3,6 +3,30 @@ Preceptor-Core
 
 Shared library for the preceptor test-runner and aggregator.
 
+
+[![Build Status](https://secure.travis-ci.org/yahoo/preceptor-core.png)](http://travis-ci.org/yahoo/preceptor-core)
+[![npm version](https://badge.fury.io/js/preceptor-core.svg)](http://badge.fury.io/js/preceptor-core)
+
+[![NPM](https://nodei.co/npm/preceptor-core.png?downloads=true)](https://nodei.co/npm/preceptor-core/)
+
+
+**Table of Contents**
+* [Installation](#installation)
+* [Usage](#usage)
+    * [Base-Object](#base-object)
+        * [Static Properties](#static-properties---defined-on-the-constructor)
+        * [Dynamic Properties](#dynamic-properties---defined-on-this-or-prototype)
+    * [Utils](#utils)
+        * [extendApply](#extendapply)
+        * [deepExtend](#deepextend)
+        * [combine](#combine)
+        * [superWrapper](#superwrapper)
+* [API-Documentation](#api-documentation)
+* [Tests](#tests)
+* [Third-party libraries](#third-party-libraries)
+* [License](#license)
+
+
 ##Installation
 
 Install this module with the following command:
