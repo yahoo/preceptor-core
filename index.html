@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Preceptor-core : Shared library for the preceptor test-runner and aggregator">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Preceptor-core</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/yahoo/preceptor-core">View on GitHub</a>
+
+          <h1 id="project_title">Preceptor-core</h1>
+          <h2 id="project_tagline">Shared library for the preceptor test-runner and aggregator</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/yahoo/preceptor-core/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/yahoo/preceptor-core/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="preceptor-core" class="anchor" href="#preceptor-core" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preceptor-Core</h1>
+
+<p>Shared library for the preceptor test-runner and aggregator.</p>
+
+<p><a href="http://travis-ci.org/yahoo/preceptor-core"><img src="https://secure.travis-ci.org/yahoo/preceptor-core.png" alt="Build Status"></a>
+<a href="http://badge.fury.io/js/preceptor-core"><img src="https://badge.fury.io/js/preceptor-core.svg" alt="npm version"></a></p>
+
+<p><a href="https://nodei.co/npm/preceptor-core/"><img src="https://nodei.co/npm/preceptor-core.png?downloads=true" alt="NPM"></a></p>
+
+<p><strong>Table of Contents</strong></p>
+
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li>
+<a href="#usage">Usage</a>
+
+<ul>
+<li>
+<a href="#base-object">Base-Object</a>
+
+<ul>
+<li><a href="#static-properties---defined-on-the-constructor">Static Properties</a></li>
+<li><a href="#dynamic-properties---defined-on-this-or-prototype">Dynamic Properties</a></li>
+</ul>
+</li>
+<li>
+<a href="#utils">Utils</a>
+
+<ul>
+<li><a href="#extendapply">extendApply</a></li>
+<li><a href="#deepextend">deepExtend</a></li>
+<li><a href="#combine">combine</a></li>
+<li><a href="#superwrapper">superWrapper</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#api-documentation">API-Documentation</a></li>
+<li><a href="#tests">Tests</a></li>
+<li><a href="#third-party-libraries">Third-party libraries</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Install this module with the following command:</p>
+
+<div class="highlight highlight-shell"><pre>npm install preceptor-core
+</pre></div>
+
+<p>Add the module to your <code>package.json</code> dependencies:</p>
+
+<div class="highlight highlight-shell"><pre>npm install --save preceptor-core
+</pre></div>
+
+<p>Add the module to your <code>package.json</code> dev-dependencies:</p>
+
+<div class="highlight highlight-shell"><pre>npm install --save-dev preceptor-core
+</pre></div>
+
+<p>Require the module in your source-code:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">core</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>The module exposes two objects:</p>
+
+<ul>
+<li>
+<code>Base</code> - A base object that every preceptor object should inherit from. See below for more information.</li>
+<li>
+<code>utils</code> - Frequently used utility functions</li>
+</ul>
+
+<h3>
+<a id="base-object" class="anchor" href="#base-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>Base-Object</h3>
+
+<p>The Base object inherits all features of the EventEmitter and exposes a couple static and dynamic properties:</p>
+
+<h4>
+<a id="static-properties---defined-on-the-constructor" class="anchor" href="#static-properties---defined-on-the-constructor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Static Properties - Defined on the constructor</h4>
+
+<h5>
+<a id="type-string" class="anchor" href="#type-string" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>TYPE</code> {string}</h5>
+
+<p>Describes the type of the object. The default value is "Base".
+Overwrite this value in sub-objects to help in debugging as the will appear as descriptor of an object.</p>
+
+<h5>
+<a id="extend-function" class="anchor" href="#extend-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>extend</code> {function}</h5>
+
+<p>Extends the current object by creating a new constructor and inheriting all static and dynamic properties. Every function will be wrapped in a <code>__super</code> wrapper that will make the <code>__super</code> function available in every method call. (See below for more information!)</p>
+
+<p><em>Parameters:</em></p>
+
+<ul>
+<li>
+<code>constructFn</code> {function} - The function to be used as constructor. This parameter is optional. When no function is given, then a generic function is used.</li>
+<li>
+<code>prototypeProperties</code> {object} - Properties that should be assigned the the <code>prototype</code> property of the constructor. This parameter is required.</li>
+<li>
+<code>staticProperties</code> {object} - Properties that should be assigned to the constructor. This parameter is optional.</li>
+</ul>
+
+<h5>
+<a id="tostring-function" class="anchor" href="#tostring-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>toString</code> {function}</h5>
+
+<p>Describes the object. By default, the format is: <code>[TYPE]</code> where by <code>TYPE</code> is the value assigned to the constructor.</p>
+
+<h5>
+<a id="__parent-object" class="anchor" href="#__parent-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>__parent</code> {object}</h5>
+
+<p>This is a reference to the parent prototype.</p>
+
+<h4>
+<a id="dynamic-properties---defined-on-this-or-prototype" class="anchor" href="#dynamic-properties---defined-on-this-or-prototype" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamic Properties - Defined on <code>this</code> or <code>prototype</code>
+</h4>
+
+<h5>
+<a id="uniqueid-string" class="anchor" href="#uniqueid-string" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>uniqueId</code> {string}</h5>
+
+<p>Every instance of an object gets a unique-id assigned.</p>
+
+<h5>
+<a id="name-string" class="anchor" href="#name-string" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>NAME</code> {string}</h5>
+
+<p>Describes the instance. The default value is "unnamed".
+Overwrite this value in instances to help to help identifying instances during run-time.</p>
+
+<h5>
+<a id="tostring-function-1" class="anchor" href="#tostring-function-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>toString</code> {function}</h5>
+
+<p>Describes the instance. By default, the format is: <code>[TYPE::NAME(uniqueId)]</code> where by <code>TYPE</code> is the value assigned to the constructor, and <code>NAME</code> is the value assigned to the instance.</p>
+
+<h5>
+<a id="__super-function" class="anchor" href="#__super-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>__super</code> {function}</h5>
+
+<p>Accessor function to access the parent implementation of a method. Should there be no parent method, then this method is an empty function.</p>
+
+<h4>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">Base</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">Base</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @class Pet</span>
+<span class="cm"> * @extends Base</span>
+<span class="cm"> * @properties {string} _type Type of pet</span>
+<span class="cm"> * @properties {string} _name Name of pet</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">Pet</span> <span class="o">=</span> <span class="nx">Base</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Constructor of Pet</span>
+<span class="cm">     *</span>
+<span class="cm">     * @constructor</span>
+<span class="cm">     * @param {string} type Type of pet</span>
+<span class="cm">     * @param {string} name Name of pet</span>
+<span class="cm">     */</span>
+     <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">// Call the parent constructor</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">();</span>
+
+        <span class="c1">// Save property on the current object</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_type</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+
+        <span class="c1">// Add instance descriptor</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">type</span> <span class="o">+</span> <span class="s1">':'</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+
+        <span class="c1">// Define here all dynamic values, values that should not be shared between multiple instances of "Pet".</span>
+    <span class="p">},</span>
+
+    <span class="cm">/** @lends Pet.prototype */</span>
+    <span class="p">{</span> <span class="c1">// Properties assigned to the prototype of "Pet"</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Make sound of pet</span>
+<span class="cm">         *</span>
+<span class="cm">         * @param {string} sound</span>
+<span class="cm">         * @method makeSound</span>
+<span class="cm">         */</span>
+        <span class="nx">makeSound</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">sound</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'sound'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">getName</span><span class="p">(),</span> <span class="nx">sound</span><span class="p">);</span>
+
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s2">" says: "</span> <span class="o">+</span> <span class="nx">sound</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Gets the name of the pet</span>
+<span class="cm">         *</span>
+<span class="cm">         * @return {string}</span>
+<span class="cm">         */</span>
+        <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// ...</span>
+        <span class="c1">// Any other functions and values assigned to the prototype.</span>
+
+        <span class="c1">// These properties can be accessed after instantiation with ```petInstance.makeSound()```.</span>
+
+        <span class="c1">// You can also define here all values that should be available in instances of "Pet" that should be shared</span>
+        <span class="c1">// across all object instances.</span>
+    <span class="p">},</span>
+
+    <span class="cm">/** @lends Pet */</span>
+    <span class="p">{</span> <span class="c1">// Properties assigned to the constructor of "Pet"</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * @type {string}</span>
+<span class="cm">         */</span>
+        <span class="nx">TYPE</span><span class="o">:</span> <span class="s2">"Pet"</span>
+
+        <span class="c1">// ...</span>
+        <span class="c1">// Any other constructor functions and values.</span>
+
+        <span class="c1">// These properties can be accessed with ```Pet.TYPE```.</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @class Cat</span>
+<span class="cm"> * @extends Pet</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">Pet</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Constructor of Cat</span>
+<span class="cm">     *</span>
+<span class="cm">     * @constructor</span>
+<span class="cm">     * @param {string} name Name of pet</span>
+<span class="cm">     */</span>
+    <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="s2">"cat"</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/** @lends Cat.prototype */</span>
+    <span class="p">{</span> <span class="c1">// Properties assigned to the prototype of "Cat"</span>
+        <span class="cm">/**</span>
+<span class="cm">         * Make sound of cat</span>
+<span class="cm">         *</span>
+<span class="cm">         * @method makeSound</span>
+<span class="cm">         */</span>
+        <span class="nx">makeSound</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="s2">"miau"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/** @lends Cat */</span>
+    <span class="p">{</span> <span class="c1">// Properties assigned to the constructor of "Cat"</span>
+        <span class="cm">/**</span>
+<span class="cm">         * @type {string}</span>
+<span class="cm">         */</span>
+        <span class="nx">TYPE</span><span class="o">:</span> <span class="s2">"Cat"</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @class Dog</span>
+<span class="cm"> * @extends Pet</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">Dog</span> <span class="o">=</span> <span class="nx">Pet</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Constructor of Dog</span>
+<span class="cm">     *</span>
+<span class="cm">     * @constructor</span>
+<span class="cm">     * @param {string} name Name of pet</span>
+<span class="cm">     */</span>
+        <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="s2">"dog"</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/** @lends Dog.prototype */</span>
+    <span class="p">{</span> <span class="c1">// Properties assigned to the prototype of "Dog"</span>
+        <span class="cm">/**</span>
+<span class="cm">         * Make sound of cat</span>
+<span class="cm">         *</span>
+<span class="cm">         * @method makeSound</span>
+<span class="cm">         */</span>
+        <span class="nx">makeSound</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="s2">"barf"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/** @lends Dog */</span>
+    <span class="p">{</span> <span class="c1">// Properties assigned to the constructor of "Dog"</span>
+        <span class="cm">/**</span>
+<span class="cm">         * @type {string}</span>
+<span class="cm">         */</span>
+        <span class="nx">TYPE</span><span class="o">:</span> <span class="s2">"Dog"</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">tomTheCat</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">(</span><span class="s2">"Tom"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">zeusTheDog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="s2">"Zeus"</span><span class="p">);</span>
+
+<span class="c1">// Listen to events</span>
+<span class="nx">tomTheCat</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'sound'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sound</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"The cat said "</span> <span class="o">+</span> <span class="nx">sound</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">zeusTheDog</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'sound'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sound</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"The dog said "</span> <span class="o">+</span> <span class="nx">sound</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Make sounds</span>
+<span class="nx">tomTheCat</span><span class="p">.</span><span class="nx">makeSound</span><span class="p">();</span>
+<span class="nx">zeusTheDog</span><span class="p">.</span><span class="nx">makeSound</span><span class="p">();</span>
+
+<span class="c1">// Print instance identifier</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Cat object: "</span> <span class="o">+</span> <span class="nx">Cat</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Cat instance"</span><span class="p">,</span> <span class="nx">tomTheCat</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Dog object: "</span> <span class="o">+</span> <span class="nx">Dog</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Dog instance"</span><span class="p">,</span> <span class="nx">zeusTheDog</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+</pre></div>
+
+<p><em>Output:</em></p>
+
+<div class="highlight highlight-shell"><pre>The cat said miau
+Tom says: miau
+The dog said barf
+Zeus says: barf
+Cat object: <span class="o">[</span>Cat<span class="o">]</span>
+Cat instance <span class="o">[</span>Cat::cat:Tom<span class="o">(</span>instance1<span class="o">)]</span>
+Dog object: <span class="o">[</span>Dog<span class="o">]</span>
+Dog instance <span class="o">[</span>Dog::dog:Zeus<span class="o">(</span>instance2<span class="o">)]</span>
+</pre></div>
+
+<hr>
+
+<h2>
+<a id="utils" class="anchor" href="#utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>Utils</h2>
+
+<p>Utils exposes the following utility functions:</p>
+
+<h3>
+<a id="extendapply" class="anchor" href="#extendapply" aria-hidden="true"><span class="octicon octicon-link"></span></a>extendApply</h3>
+
+<p>This extend-function works like any other extend function, except it calls a function on each value and uses the result as value of a property.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>obj</code> {object} - Destination object to merge values into</li>
+<li>
+<code>objects</code> {object[]} - Array of objects that should be copied into the <code>obj</code>.</li>
+<li>
+<code>fn</code> {function} - Function that returns a value that should be used in place of the original value. Every property in the objects of the <code>objects</code> parameter will call this function. This parameter is optional. Should no function be supplied, then the values will be used as-is.</li>
+</ul>
+
+<p>Apply-Function Parameters:</p>
+
+<ul>
+<li>
+<code>srcValue</code> {*} - The original value of a property that should be copied to the <code>obj</code>.</li>
+<li>
+<code>dstValue</code> {*} - Current value on the <code>obj</code> object.</li>
+<li>
+<code>options</code> {object} - Additional options</li>
+<li>
+<code>options.key</code> {string} - Name of the property that should be copied.</li>
+<li>
+<code>options.currentObject</code> {object} _ The object currently processed from the <code>objects</code> list.</li>
+<li>
+<code>options.objectIndex</code> {int} - The index of <code>currentObject</code> in the <code>objects</code> list.</li>
+<li>
+<code>options.valueIndex</code> {int} - The index of the current property in <code>currentObject</code>.</li>
+</ul>
+
+<h4>
+<a id="example---simple-extend" class="anchor" href="#example---simple-extend" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Simple extend</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../../'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">result</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"obj1"</span><span class="p">,</span>
+    <span class="s2">"entry1"</span><span class="o">:</span> <span class="mi">23</span><span class="p">,</span>
+    <span class="s2">"entry2"</span><span class="o">:</span> <span class="mi">46</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"obj2"</span><span class="p">,</span>
+    <span class="s2">"entry2"</span><span class="o">:</span> <span class="mi">78</span><span class="p">,</span>
+    <span class="s2">"entry3"</span><span class="o">:</span> <span class="mi">2</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">srcObj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"entry0"</span><span class="o">:</span> <span class="mi">0</span>
+<span class="p">};</span>
+
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Simple extend:"</span><span class="p">);</span>
+<span class="nx">utils</span><span class="p">.</span><span class="nx">extendApply</span><span class="p">(</span><span class="nx">srcObj</span><span class="p">,</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">]);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">srcObj</span><span class="p">);</span>
+</pre></div>
+
+<p>Output:</p>
+
+<div class="highlight highlight-shell"><pre>Simple extend:
+<span class="o">{</span> entry0: 0, name: <span class="s1">'obj2'</span>, entry1: 23, entry2: 78, entry3: <span class="m">2</span> <span class="o">}</span>
+</pre></div>
+
+<h4>
+<a id="example---extend-with-apply-function" class="anchor" href="#example---extend-with-apply-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Extend with apply function</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Extend with function:"</span><span class="p">);</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">extendApply</span><span class="p">({},</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</pre></div>
+
+<p>Output:</p>
+
+<div class="highlight highlight-shell"><pre>Extend with <span class="k">function</span>:
+<span class="o">{</span> name: <span class="s1">'obj21'</span>, entry1: 24, entry2: 79, entry3: <span class="m">3</span> <span class="o">}</span>
+</pre></div>
+
+<h4>
+<a id="example---logging-extend-apply-calls" class="anchor" href="#example---logging-extend-apply-calls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Logging extend apply calls</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Extend logging:"</span><span class="p">);</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">extendApply</span><span class="p">({},</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">srcValue</span><span class="p">,</span> <span class="nx">dstValue</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"The value '"</span> <span class="o">+</span> <span class="nx">srcValue</span> <span class="o">+</span> <span class="s2">"' with key '"</span> <span class="o">+</span> <span class="nx">options</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">"' from object with name '"</span> <span class="o">+</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nx">currentObject</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span>  <span class="s2">"' was '"</span> <span class="o">+</span> <span class="nx">dstValue</span> <span class="o">+</span> <span class="s2">"' in the original object"</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">options</span><span class="p">.</span><span class="nx">objectIndex</span> <span class="o">+</span> <span class="s1">':'</span> <span class="o">+</span> <span class="nx">options</span><span class="p">.</span><span class="nx">valueIndex</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</pre></div>
+
+<p>Output:</p>
+
+<div class="highlight highlight-shell"><pre>Extend logging:
+The value <span class="s1">'obj1'</span> with key <span class="s1">'name'</span> from object with name <span class="s1">'obj1'</span> was <span class="s1">'undefined'</span> in the original object
+The value <span class="s1">'23'</span> with key <span class="s1">'entry1'</span> from object with name <span class="s1">'obj1'</span> was <span class="s1">'undefined'</span> in the original object
+The value <span class="s1">'46'</span> with key <span class="s1">'entry2'</span> from object with name <span class="s1">'obj1'</span> was <span class="s1">'undefined'</span> in the original object
+The value <span class="s1">'obj2'</span> with key <span class="s1">'name'</span> from object with name <span class="s1">'obj2'</span> was <span class="s1">'0:0'</span> in the original object
+The value <span class="s1">'78'</span> with key <span class="s1">'entry2'</span> from object with name <span class="s1">'obj2'</span> was <span class="s1">'0:2'</span> in the original object
+The value <span class="s1">'2'</span> with key <span class="s1">'entry3'</span> from object with name <span class="s1">'obj2'</span> was <span class="s1">'undefined'</span> in the original object
+<span class="o">{</span> name: <span class="s1">'1:0'</span>, entry1: <span class="s1">'0:1'</span>, entry2: <span class="s1">'1:1'</span>, entry3: <span class="s1">'1:2'</span> <span class="o">}</span>
+</pre></div>
+
+<hr>
+
+<h3>
+<a id="deepextend" class="anchor" href="#deepextend" aria-hidden="true"><span class="octicon octicon-link"></span></a>deepExtend</h3>
+
+<p>Extends an object with properties that will be recursively copied.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>obj</code> {object} - Destination object to merge values into</li>
+<li>
+<code>objects</code> {object[]} - Array of objects that should be copied into the <code>obj</code>.</li>
+<li>
+<code>options</code> {object} - Additional options.</li>
+<li>
+<code>options.replace</code> {boolean} - If set, then array entries in destination will be replaced instead of values appended to the destination list.</li>
+</ul>
+
+<h4>
+<a id="example-simple-usage" class="anchor" href="#example-simple-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"entry1"</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s2">"entry2"</span><span class="o">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s2">"entry4"</span><span class="o">:</span> <span class="mi">23</span><span class="p">,</span>
+    <span class="s2">"entry5"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"entry6"</span><span class="o">:</span> <span class="mi">22</span><span class="p">,</span>
+        <span class="s2">"entry7"</span><span class="o">:</span> <span class="mi">24</span><span class="p">,</span>
+        <span class="s2">"entry8"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"entry9"</span><span class="o">:</span> <span class="mi">9</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"entry2"</span><span class="o">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+    <span class="s2">"entry3"</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"entry5"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"entry7"</span><span class="o">:</span> <span class="mi">21</span><span class="p">,</span>
+        <span class="s2">"entry10"</span><span class="o">:</span> <span class="mi">11</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">srcObj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"entry0"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"entry2"</span><span class="o">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+    <span class="s2">"entry5"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"entry0"</span><span class="o">:</span> <span class="s2">"zero"</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">utils</span><span class="p">.</span><span class="nx">deepExtend</span><span class="p">(</span><span class="nx">srcObj</span><span class="p">,</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">]);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">srcObj</span><span class="p">);</span>
+</pre></div>
+
+<p>Output:</p>
+
+<div class="highlight highlight-shell"><pre><span class="o">{</span> entry0: 0,
+  entry2: <span class="o">[</span> 7, 5, 6, 8, <span class="m">9</span> <span class="o">]</span>,
+  entry5:
+   <span class="o">{</span> entry0: <span class="s1">'zero'</span>,
+     entry6: 22,
+     entry7: 21,
+     entry8: <span class="o">{</span> entry9: <span class="m">9</span> <span class="o">}</span>,
+     entry10: <span class="m">11</span> <span class="o">}</span>,
+  entry1: <span class="o">[</span> 1, 2, <span class="m">3</span> <span class="o">]</span>,
+  entry4: 23,
+  entry3: <span class="m">2</span> <span class="o">}</span>
+</pre></div>
+
+<h4>
+<a id="example-use-with-replace" class="anchor" href="#example-use-with-replace" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Use with replace</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">result</span><span class="p">;</span>
+
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">deepExtend</span><span class="p">({},</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">],</span> <span class="p">{</span> <span class="nx">replace</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</pre></div>
+
+<p>Output:</p>
+
+<div class="highlight highlight-shell"><pre><span class="o">{</span> entry1: <span class="o">[</span> 1, 2, <span class="m">3</span> <span class="o">]</span>,
+    entry2: <span class="o">[</span> 8, <span class="m">9</span> <span class="o">]</span>,
+    entry4: 23,
+    entry5: <span class="o">{</span> entry6: 22, entry7: 21, entry8: <span class="o">{</span> entry9: <span class="m">9</span> <span class="o">}</span>, entry10: <span class="m">11</span> <span class="o">}</span>,
+    entry3: <span class="m">2</span> <span class="o">}</span>
+</pre></div>
+
+<hr>
+
+<h3>
+<a id="combine" class="anchor" href="#combine" aria-hidden="true"><span class="octicon octicon-link"></span></a>combine</h3>
+
+<p>Combines multiple strings by applying a glue-string between them if they are not already available there. This is very similar to the <code>path.join</code> method, but it doesn't care what the structure of the rest or the string is.</p>
+
+<p>This method is used with the <code>extendApply</code> function to give object methods the possibility to call the parent method with <code>__super()</code>.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>glue</code> {string} - Glue string</li>
+<li>
+<code>str, ...</code> {string} - Strings that should be glued.</li>
+</ul>
+
+<h4>
+<a id="example-simple-usage-1" class="anchor" href="#example-simple-usage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">''</span><span class="p">));</span>
+<span class="c1">// Output: -</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'test1'</span><span class="p">,</span> <span class="s1">'test2'</span><span class="p">));</span>
+<span class="c1">// Output: test1-test2</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'-test1-'</span><span class="p">,</span> <span class="s1">'-test2-'</span><span class="p">));</span>
+<span class="c1">// Output: -test1-test2-</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'test1-'</span><span class="p">,</span> <span class="s1">'test2'</span><span class="p">));</span>
+<span class="c1">// Output: test1-test2</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'test1'</span><span class="p">,</span> <span class="s1">'-test2'</span><span class="p">));</span>
+<span class="c1">// Output: test1-test2</span>
+</pre></div>
+
+<hr>
+
+<h3>
+<a id="superwrapper" class="anchor" href="#superwrapper" aria-hidden="true"><span class="octicon octicon-link"></span></a>superWrapper</h3>
+
+<p>Function that creates a new function that sets the <code>__super</code> property up to be called from within a function body.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>currentItem</code> {*} - Value that should be used</li>
+<li>
+<code>previousItem</code> {*} - Previous item value</li>
+</ul>
+
+<h4>
+<a id="example-simple-usage-2" class="anchor" href="#example-simple-usage-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">newFn</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">superWrapper</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Method test in object 2 and value "</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value1</span><span class="p">,</span> <span class="nx">value2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Method test in object 1 and values "</span> <span class="o">+</span> <span class="nx">value1</span> <span class="o">+</span> <span class="s2">" and "</span> <span class="o">+</span> <span class="nx">value2</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">newFn</span><span class="p">(</span><span class="mi">88</span><span class="p">);</span>
+</pre></div>
+
+<p>Output:</p>
+
+<div class="highlight highlight-shell"><pre>Method <span class="nb">test </span>in object <span class="m">1</span> and values <span class="m">123</span> and 88
+Method <span class="nb">test </span>in object <span class="m">2</span> and value 88
+</pre></div>
+
+<h4>
+<a id="example-usage-with-extendapply" class="anchor" href="#example-usage-with-extendapply" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Usage with extendApply</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">test</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value1</span><span class="p">,</span> <span class="nx">value2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Method test in object 1 and values "</span> <span class="o">+</span> <span class="nx">value1</span> <span class="o">+</span> <span class="s2">" and "</span> <span class="o">+</span> <span class="nx">value2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">test</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Method test in object 2 and value "</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">extendApply</span><span class="p">(</span><span class="nx">obj1</span><span class="p">,</span> <span class="p">[</span><span class="nx">obj2</span><span class="p">],</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">superWrapper</span><span class="p">);</span>
+<span class="nx">result</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="mi">88</span><span class="p">);</span>
+</pre></div>
+
+<p>Output:</p>
+
+<div class="highlight highlight-shell"><pre>Method <span class="nb">test </span>in object <span class="m">1</span> and values <span class="m">123</span> and 88
+Method <span class="nb">test </span>in object <span class="m">2</span> and value 88
+</pre></div>
+
+<hr>
+
+<h2>
+<a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>API-Documentation</h2>
+
+<p>Generate the documentation with following command:</p>
+
+<div class="highlight highlight-shell"><pre>npm run docs
+</pre></div>
+
+<p>The documentation will be generated in the <code>docs</code> folder of the module root.</p>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>Run the tests with the following command:</p>
+
+<div class="highlight highlight-shell"><pre>npm run <span class="nb">test</span>
+</pre></div>
+
+<p>The code-coverage will be written to the <code>coverage</code> folder in the module root.</p>
+
+<h2>
+<a id="third-party-libraries" class="anchor" href="#third-party-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Third-party libraries</h2>
+
+<p>The following third-party libraries are used by this module:</p>
+
+<h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<ul>
+<li>underscore: <a href="http://underscorejs.org">http://underscorejs.org</a>
+</li>
+</ul>
+
+<h3>
+<a id="dev-dependencies" class="anchor" href="#dev-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dev-Dependencies</h3>
+
+<ul>
+<li>chai: <a href="http://chaijs.com">http://chaijs.com</a>
+</li>
+<li>istanbul: <a href="https://github.com/gotwarlost/istanbul">https://github.com/gotwarlost/istanbul</a>
+</li>
+<li>mocha: <a href="https://github.com/visionmedia/mocha">https://github.com/visionmedia/mocha</a>
+</li>
+<li>yuidocjs: <a href="https://github.com/yui/yuidoc">https://github.com/yui/yuidoc</a>
+</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>The MIT License</p>
+
+<p>Copyright 2014 Yahoo Inc.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Preceptor-core maintained by <a href="https://github.com/yahoo">yahoo</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("https://github.com/yahoo/preceptor-core");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
