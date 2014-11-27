@@ -572,6 +572,7 @@ The following third-party libraries are used by this module:
 
 ###Dependencies
 * underscore: http://underscorejs.org
+* mkdirp: https://github.com/substack/node-mkdirp
 
 ###Dev-Dependencies
 * chai: http://chaijs.com
