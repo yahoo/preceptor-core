@@ -59,33 +59,64 @@ describe('utils', function () {
 
         describe('Simple copy', function () {
 
-            it('should ignore scalars', function () {
+            it('should ignore direct scalars', function () {
                 var obj1 = 123;
 
                 expect(utils.deepExtend({}, [obj1])).to.be.deep.equal({});
             });
 
             it('should copy scalars', function () {
-                var obj1 = {
+                var obj1,
+                    result;
+
+                obj1 = {
                     test1: 123,
                     test2: "hello world"
                 };
 
-                expect(utils.deepExtend({}, [obj1])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1]);
+                obj1.test1 = 789;
+
+                expect(result).to.be.deep.equal({
                     test1: 123,
                     test2: "hello world"
+                });
+            });
+
+            it('should copy functions', function () {
+                var fn = function () {},
+                    result,
+                    obj1;
+
+                obj1 = {
+                    test1: 123,
+                    test2: fn
+                };
+
+                result = utils.deepExtend({}, [obj1]);
+                obj1.test1 = 567;
+
+                expect(result).to.be.deep.equal({
+                    test1: 123,
+                    test2: fn
                 });
             });
 
             it('should copy objects', function () {
-                var obj1 = {
+                var obj1,
+                    result;
+
+                obj1 = {
                     element1: {
                         test1: 123,
                         test2: "hello world"
                     }
                 };
 
-                expect(utils.deepExtend({}, [obj1])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1]);
+                obj1.element1.test1 = 888;
+
+                expect(result).to.be.deep.equal({
                     element1: {
                         test1: 123,
                         test2: "hello world"
@@ -93,17 +124,93 @@ describe('utils', function () {
                 });
             });
 
+            it('should copy direct arrays', function () {
+                var obj1,
+                    result;
+
+                obj1 = [
+                    123,
+                    "hello world"
+                ];
+
+                result = utils.deepExtend([], [obj1]);
+                obj1[0] = 45;
+
+                expect(result).to.be.deep.equal([
+                    123,
+                    "hello world"
+                ]);
+            });
+
             it('should copy arrays', function () {
-                var obj1 = {
+                var obj1,
+                    result;
+
+                obj1 = {
                     element1: [
                         123,
                         "hello world"
                     ]
                 };
 
-                expect(utils.deepExtend({}, [obj1])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1]);
+                obj1.element1[0] = 4564;
+
+                expect(result).to.be.deep.equal({
                     element1: [
                         123,
+                        "hello world"
+                    ]
+                });
+            });
+
+            it('should deep-copy arrays with objects', function () {
+                var result,
+                    obj1;
+
+                obj1 = {
+                    element1: [
+                        123,
+                        {
+                            item1: 42
+                        },
+                        "hello world"
+                    ]
+                };
+
+                result = utils.deepExtend({}, [obj1]);
+                obj1.element1[1].item1 = 56;
+
+                expect(result).to.be.deep.equal({
+                    element1: [
+                        123,
+                        {
+                            item1: 42
+                        },
+                        "hello world"
+                    ]
+                });
+            });
+
+            it('should deep-copy arrays with arrays', function () {
+                var result,
+                    obj1;
+
+                obj1 = {
+                    element1: [
+                        123,
+                        [ "item1", 42 ],
+                        "hello world"
+                    ]
+                };
+
+                result = utils.deepExtend({}, [obj1]);
+                obj1.element1[1][1] = 56;
+
+                expect(result).to.be.deep.equal({
+                    element1: [
+                        123,
+                        [ "item1", 42 ],
                         "hello world"
                     ]
                 });
@@ -113,32 +220,42 @@ describe('utils', function () {
         describe('Multiple copies', function () {
 
             it('should ignore scalars', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         test1: 123,
                         test2: "hello world"
                     },
                     obj2 = 567;
 
-                expect(utils.deepExtend({}, [obj1, obj2])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, obj2]);
+                obj1.test1 = 564;
+                obj2 = 54;
+
+                expect(result).to.be.deep.equal({
                     test1: 123,
                     test2: "hello world"
                 });
             });
 
             it('should ignore unknown', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         test1: 123,
                         test2: "hello world"
                     };
 
-                expect(utils.deepExtend({}, [obj1, undefined])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, undefined]);
+                obj1.test1 = 45;
+
+                expect(result).to.be.deep.equal({
                     test1: 123,
                     test2: "hello world"
                 });
             });
 
             it('should copy scalars', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         test1: 123,
                         test2: "hello world"
                     },
@@ -146,7 +263,11 @@ describe('utils', function () {
                         test3: 567
                     };
 
-                expect(utils.deepExtend({}, [obj1, obj2])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, obj2]);
+                obj1.test1 = 87;
+                obj2.test3 = 98;
+
+                expect(result).to.be.deep.equal({
                     test1: 123,
                     test2: "hello world",
                     test3: 567
@@ -154,7 +275,8 @@ describe('utils', function () {
             });
 
             it('should copy objects', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         element1: {
                             test1: 123,
                             test2: "hello world"
@@ -166,7 +288,11 @@ describe('utils', function () {
                         }
                     };
 
-                expect(utils.deepExtend({}, [obj1, obj2])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, obj2]);
+                obj1.element1.test1 = 6768;
+                obj2.element2.test3 = 455;
+
+                expect(result).to.be.deep.equal({
                     element1: {
                         test1: 123,
                         test2: "hello world"
@@ -178,14 +304,19 @@ describe('utils', function () {
             });
 
             it('should copy arrays', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         element1: [123, "hello world"]
                     },
                     obj2 = {
                         element2: [567]
                     };
 
-                expect(utils.deepExtend({}, [obj1, obj2])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, obj2]);
+                obj1.element1[0] = 54;
+                obj2.element2[0] = 44;
+
+                expect(result).to.be.deep.equal({
                     element1: [ 123, "hello world" ],
                     element2: [ 567 ]
                 });
@@ -195,7 +326,8 @@ describe('utils', function () {
         describe('Copy with overwrite', function () {
 
             it('should copy scalars', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         test1: 123,
                         test2: "hello world"
                     },
@@ -203,14 +335,19 @@ describe('utils', function () {
                         test1: 567
                     };
 
-                expect(utils.deepExtend({}, [obj1, obj2])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, obj2]);
+                obj1.test1 = 88;
+                obj2.test1 = 556;
+
+                expect(result).to.be.deep.equal({
                     test1: 567,
                     test2: "hello world"
                 });
             });
 
             it('should copy objects', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         element1: {
                             test1: 123,
                             test2: "hello world"
@@ -222,7 +359,11 @@ describe('utils', function () {
                         }
                     };
 
-                expect(utils.deepExtend({}, [obj1, obj2])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, obj2]);
+                obj1.element1.test1 = 88;
+                obj2.element1.test3 = 96;
+
+                expect(result).to.be.deep.equal({
                     element1: {
                         test1: 123,
                         test2: "hello world",
@@ -232,27 +373,37 @@ describe('utils', function () {
             });
 
             it('should append arrays', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         element1: [123, "hello world"]
                     },
                     obj2 = {
                         element1: [567]
                     };
 
-                expect(utils.deepExtend({}, [obj1, obj2])).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, obj2]);
+                obj1.element1[0] = 46;
+                obj2.element1[0] = 23;
+
+                expect(result).to.be.deep.equal({
                     element1: [ 123, "hello world", 567 ]
                 });
             });
 
             it('should replace arrays', function () {
-                var obj1 = {
+                var result,
+                    obj1 = {
                         element1: [123, "hello world"]
                     },
                     obj2 = {
                         element1: [567]
                     };
 
-                expect(utils.deepExtend({}, [obj1, obj2], { replace: true })).to.be.deep.equal({
+                result = utils.deepExtend({}, [obj1, obj2], { replace: true });
+                obj1.element1[0] = 89;
+                obj2.element1[0] = 96;
+
+                expect(result).to.be.deep.equal({
                     element1: [ 567, "hello world" ]
                 });
             });

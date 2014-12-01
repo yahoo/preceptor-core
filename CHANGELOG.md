@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+v0.9.2 - 12/01/14
+* Bugfix: Deep-copy array objects on deepExtend
+
 v0.9.1 - 11/27/14
 * Added logger objects
 
