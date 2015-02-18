@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-v0.9.4
+v0.9.4 - 02/18/14
 * Added the safe "require" function in "utils"
 
 v0.9.3 - 12/01/14
