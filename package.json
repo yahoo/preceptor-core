@@ -1,6 +1,6 @@
 {
     "name": "preceptor-core",
-    "version": "0.9.3",
+    "version": "0.9.4",
     "description": "Core components for the preceptor test-runner and aggregator",
     "license": "MIT",
     "main": "index.js",

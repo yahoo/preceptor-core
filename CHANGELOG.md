@@ -1,7 +1,10 @@
 CHANGELOG
 =========
 
-v0.9.3
+v0.9.4
+* Added the safe "require" function in "utils"
+
+v0.9.3 - 12/01/14
 * Bugfix: Flexible naming for LogManager
 
 v0.9.2 - 12/01/14
