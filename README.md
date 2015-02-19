@@ -577,10 +577,11 @@ The following third-party libraries are used by this module:
 
 ###Dependencies
 * underscore: http://underscorejs.org
-* mkdirp: https://github.com/substack/node-mkdirp
+* log4js: https://github.com/stritti/log4js
 
 ###Dev-Dependencies
 * chai: http://chaijs.com
+* coveralls: https://github.com/cainus/node-coveralls
 * istanbul: https://github.com/gotwarlost/istanbul
 * mocha: https://github.com/visionmedia/mocha
 * yuidocjs: https://github.com/yui/yuidoc

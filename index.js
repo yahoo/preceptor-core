@@ -1,9 +1,6 @@
 // Copyright 2014, Yahoo! Inc.
 // Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
 
-var Base = require('./lib/base');
-var utils = require('./lib/utils');
-
 module.exports = {
 
     /**
@@ -12,7 +9,7 @@ module.exports = {
      * @property Base
      * @type {Base}
      */
-    Base: Base,
+    Base: require('./lib/base'),
 
     /**
      * Utils functions
@@ -20,28 +17,19 @@ module.exports = {
      * @property utils
      * @type {object}
      */
-    utils: utils,
-
+    utils: require('./lib/utils'),
 
     /**
-     * Abstract logger
+     * Logger
      *
-     * @property AbstractLogger
-     * @type {AbstractLogger}
+     * @property log
+     * @type {object}
      */
-    AbstractLogger: require('./lib/abstractLogger'),
-
-    /**
-     * Log-Manager class
-     *
-     * @property logManager
-     * @type {LogManager}
-     */
-    LogManager: require('./lib/logManager'),
+    log: require('./lib/log'),
 
 
     /**
-     * Version of the selenium server
+     * Version
      *
      * @type {string}
      */
