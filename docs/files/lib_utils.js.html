@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.0</em>
+            <em>API Docs for: 0.9.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,6 +42,8 @@
             <ul id="api-classes" class="apis classes">
             
                 <li><a href="../classes/Base.html">Base</a></li>
+            
+                <li><a href="../classes/Logger.html">Logger</a></li>
             
                 <li><a href="../classes/utils.html">utils</a></li>
             
@@ -110,9 +112,9 @@ var extendApply = function (obj, objects, fn) {
     fn = fn || function (item /* , previousItem, obj, objectIndex, valueIndex */) {
         return item;
     };
-    _.each(objects, function (currentObject, objectIndex) {
+    objects.forEach(function (currentObject, objectIndex) {
         if (currentObject) {
-            _.each(_.keys(currentObject), function (key, valueIndex) {
+            _.keys(currentObject).forEach(function (key, valueIndex) {
                 obj[key] = fn(currentObject[key], obj[key], {
                     key: key,
                     currentObject: currentObject,
@@ -137,14 +139,24 @@ var extendApply = function (obj, objects, fn) {
  */
 var deepExtend = function (obj, objects, options) {
     options = options || {};
-    _.each(objects, function (currentObject) {
+    objects.forEach(function (currentObject) {
         if (currentObject) {
-            _.each(_.keys(currentObject), function (key) {
+            _.keys(currentObject).forEach(function (key) {
+                var i, len;
                 if ((_.isArray(obj[key]) || !obj[key]) &amp;&amp; _.isArray(currentObject[key])) {
                     if (options.replace) {
                         obj[key] = deepExtend(obj[key] || [], [currentObject[key]]);
                     } else {
-                        obj[key] = (obj[key] || []).concat(currentObject[key].slice());
+                        obj[key] = (obj[key] || []);
+                        for(i = 0, len = currentObject[key].length; i &lt; len; i++) {
+                            if (_.isArray(currentObject[key][i])) {
+                                obj[key].push(deepExtend([], [currentObject[key][i]]));
+                            } else if (_.isObject(currentObject[key][i])) {
+                                obj[key].push(deepExtend({}, [currentObject[key][i]]));
+                            } else {
+                                obj[key].push(currentObject[key][i]);
+                            }
+                        }
                     }
                 } else if (_.isFunction(currentObject[key])) {
                     obj[key] = currentObject[key];
@@ -207,7 +219,7 @@ var superWrapper = function (currentItem, previousItem) {
 var combine = function (glue, str1 /*, ... */) {
     var args = Array.prototype.slice.call(arguments, 2), result = str1;
 
-    _.each(args, function (arg) {
+    args.forEach(function (arg) {
         if ((result.substr(-1) === glue) &amp;&amp; (arg.substr(0, 1) === glue)) {
             result += arg.substr(1);
         } else if ((result.substr(-1) === glue) || (arg.substr(0, 1) === glue)) {
@@ -231,12 +243,27 @@ var fileNameSafe = function (str) {
     return str.replace(/[^a-zA-Z\d]/g, &#x27;-&#x27;);
 };
 
+/**
+ * Safely requires a module
+ *
+ * @param {string} path
+ * @return {*}
+ */
+var requir = function (path) {
+    try {
+        return require(path);
+    } catch (err) {
+        throw new Error(&quot;Cannot find module: &quot; + path);
+    }
+};
+
 module.exports = {
     superWrapper: superWrapper,
     extendApply: extendApply,
     deepExtend: deepExtend,
     combine: combine,
-    fileNameSafe: fileNameSafe
+    fileNameSafe: fileNameSafe,
+    require: requir
 };
 
     </pre>

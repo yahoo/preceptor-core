@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.0</em>
+            <em>API Docs for: 0.9.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,6 +42,8 @@
             <ul id="api-classes" class="apis classes">
             
                 <li><a href="../classes/Base.html">Base</a></li>
+            
+                <li><a href="../classes/Logger.html">Logger</a></li>
             
                 <li><a href="../classes/utils.html">utils</a></li>
             
@@ -91,15 +93,35 @@
 // Copyright 2014, Yahoo! Inc.
 // Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
 
-var Base = require(&#x27;./lib/base&#x27;);
-var utils = require(&#x27;./lib/utils&#x27;);
-
 module.exports = {
-    Base: Base,
-    utils: utils,
 
     /**
-     * Version of the selenium server
+     * Base class
+     *
+     * @property Base
+     * @type {Base}
+     */
+    Base: require(&#x27;./lib/base&#x27;),
+
+    /**
+     * Utils functions
+     *
+     * @property utils
+     * @type {object}
+     */
+    utils: require(&#x27;./lib/utils&#x27;),
+
+    /**
+     * Logger
+     *
+     * @property log
+     * @type {object}
+     */
+    log: require(&#x27;./lib/log&#x27;),
+
+
+    /**
+     * Version
      *
      * @type {string}
      */

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib/base.js - preceptor-core</title>
+    <title>lib/log.js - preceptor-core</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -86,129 +86,137 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: lib/base.js</h1>
+                        <h1 class="file-heading">File: lib/log.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-// Copyright 2014, Yahoo! Inc.
+// Copyright 2015, Yahoo! Inc.
 // Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
 
+var log4js = require(&#x27;log4js&#x27;);
+var path = require(&#x27;path&#x27;);
 var _ = require(&#x27;underscore&#x27;);
-var nodeUtil = require(&#x27;util&#x27;);
-var EventEmitter = require(&#x27;events&#x27;).EventEmitter;
 
-var utils = require(&#x27;./utils&#x27;);
+var _level = null;
 
-/**
- * Base object class
- *
- * @constructor
- * @class Base
- * @property {string} _uniqueId Unique ID of instance
- */
-function Base () {
-	this._uniqueId = _.uniqueId(&#x27;instance&#x27;);
-}
-nodeUtil.inherits(Base, EventEmitter);
+var _buffered = true;
+var _buffer = [];
+
+log4js.setGlobalLogLevel(&#x27;INFO&#x27;);
 
 /**
- * Used as method for parent-method calls
+ * Arguments logger with custom functionality
  *
- * @method __super
+ * @param {Logger} logger
+ * @return {Logger}
+ * @private
  */
-Base.prototype.__super = null;
+var _argumentLogger = function (logger) {
 
-/**
- * Name of instance for debugging purposes
- *
- * @property NAME
- * @type {string}
- */
-Base.prototype.NAME = &#x27;unnamed&#x27;;
+	if (!logger.argumented) {
 
-/**
- * Converts instance to string
- *
- * @method toString
- * @return {string}
- */
-Base.prototype.toString = function () {
-    return &quot;[&quot; + this.constructor.TYPE + &quot;::&quot; + this.NAME + &quot;(&quot; + this._uniqueId + &quot;)&quot; + &quot;]&quot;;
-};
+		[&#x27;trace&#x27;, &#x27;debug&#x27;, &#x27;info&#x27;, &#x27;warn&#x27;, &#x27;error&#x27;].forEach(function (item) {
+			var oldFunction = logger[item];
 
-Base.prototype.constructor = Base;
+			logger[item] = function () {
+				var args = Array.prototype.slice.call(arguments);
 
-/**
- * Type of class
- *
- * @property TYPE
- * @static
- * @type {string}
- */
-Base.TYPE = &#x27;Base&#x27;;
+				for(var i = 0; i &lt; args.length; i++) {
+					if (_.isObject(args[i])) {
+						args[i] = JSON.stringify(args[i], null, 4);
+					}
+				}
 
-/**
- * Extends the class with another class; implementing inheritance
- *
- * @method extend
- * @static
- * @param {function} [constructorFn]
- * @param {object} prototypeProperties
- * @param {object} [staticProperties]
- * @return {function}
- */
-Base.extend = function (constructorFn, prototypeProperties, staticProperties) {
+				if (_buffered) {
+					_buffer.push({
+						logger: logger,
+						level: item,
+						args: args
+					});
+				} else {
+					oldFunction.apply(logger, args);
+				}
+			};
+		});
 
-	var parent = this,
-        child,
-        F;
-
-	if (!_.isFunction(constructorFn)) {
-		staticProperties = prototypeProperties;
-		prototypeProperties = constructorFn;
-		constructorFn = undefined;
+		logger.argumented = true;
 	}
 
-	if (!constructorFn) {
-		constructorFn = function () {
-			return this.__super.apply(this, arguments);
-		};
-	}
-
-	child = utils.superWrapper(constructorFn, parent);
-
-    // Copies the parent methods without wrapping them again
-	utils.extendApply(child, [parent]);
-
-    // Wrap all new functions with the superWrapper
-	utils.extendApply(child, [staticProperties], utils.superWrapper);
-
-	F = function () {
-		this.constructor = child;
-	};
-	F.prototype = parent.prototype;
-	child.prototype = new F();
-
-    // Wrap all new prototype methods in the superWrapper
-	utils.extendApply(child.prototype, [prototypeProperties], utils.superWrapper);
-
-	child.__parent = parent.prototype;
-
-	return child;
+	return logger;
 };
 
 /**
- * Static class conversion to string
+ * Logger object
  *
- * @method toString
- * @static
- * @return {string}
+ * @class Logger
+ *
+ * @property log
+ * @property trace
+ * @property debug
+ * @property info
+ * @property warn
+ * @property error
  */
-Base.toString = function () {
-    return &quot;[&quot; + this.TYPE + &quot;]&quot;;
+
+/**
+ * Logger management object
+ *
+ * @static log
+ * @type {object}
+ */
+var log = {
+
+	/**
+	 * Get logging level
+	 *
+	 * @method getLevel
+	 * @return {string}
+	 */
+	getLevel: function () {
+		return _level;
+	},
+
+	/**
+	 * Set logging level
+	 *
+	 * @method setLevel
+	 * @param {string} level
+	 */
+	setLevel: function (level) {
+		_level = level;
+		log4js.setGlobalLogLevel(_level);
+	},
+
+
+	/**
+	 * Return logger for a specific file
+	 *
+	 * @param {string} filename
+	 * @return {Logger}
+	 */
+	getLogger: function (filename) {
+		var logPath = filename;
+		logPath = logPath.substr(__dirname.length + path.sep.length);
+		return _argumentLogger(log4js.getLogger(logPath));
+	},
+
+	/**
+	 * Flushes all buffered entries
+	 *
+	 * @method flush
+	 */
+	flush: function () {
+		_buffered = false;
+
+		// Trigger all the entries
+		_buffer.forEach(function (entry) {
+			entry.logger[entry.level].apply(entry.logger, entry.args);
+		});
+		_buffer = [];
+	}
 };
 
-module.exports = Base;
+module.exports = log;
 
     </pre>
 </div>

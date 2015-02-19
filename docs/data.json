@@ -1,8 +1,8 @@
 {
     "project": {
         "name": "preceptor-core",
-        "description": "Core components for the preceptor test-runner and aggregator",
-        "version": "0.9.0"
+        "description": "Core components for the preceptor test runner and aggregator",
+        "version": "0.9.5"
     },
     "files": {
         "lib/base.js": {
@@ -10,6 +10,15 @@
             "modules": {},
             "classes": {
                 "Base": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/log.js": {
+            "name": "lib/log.js",
+            "modules": {},
+            "classes": {
+                "Logger": 1
             },
             "fors": {},
             "namespaces": {}
@@ -47,6 +56,19 @@
             "is_constructor": 1,
             "itemtype": "property",
             "type": "String"
+        },
+        "Logger": {
+            "name": "Logger",
+            "shortname": "Logger",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/log.js",
+            "line": 56,
+            "description": "Logger object",
+            "itemtype": "property"
         },
         "utils": {
             "name": "utils",
@@ -146,6 +168,85 @@
             "class": "Base"
         },
         {
+            "file": "lib/log.js",
+            "line": 15,
+            "description": "Arguments logger with custom functionality",
+            "params": [
+                {
+                    "name": "logger",
+                    "description": "",
+                    "type": "Logger"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Logger"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "Logger"
+        },
+        {
+            "file": "lib/log.js",
+            "line": 69,
+            "description": "Logger management object",
+            "static": "log",
+            "type": "{object}",
+            "class": "Logger"
+        },
+        {
+            "file": "lib/log.js",
+            "line": 77,
+            "description": "Get logging level",
+            "itemtype": "method",
+            "name": "getLevel",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Logger"
+        },
+        {
+            "file": "lib/log.js",
+            "line": 87,
+            "description": "Set logging level",
+            "itemtype": "method",
+            "name": "setLevel",
+            "params": [
+                {
+                    "name": "level",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Logger"
+        },
+        {
+            "file": "lib/log.js",
+            "line": 99,
+            "description": "Return logger for a specific file",
+            "params": [
+                {
+                    "name": "filename",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Logger"
+            },
+            "class": "Logger"
+        },
+        {
+            "file": "lib/log.js",
+            "line": 111,
+            "description": "Flushes all buffered entries",
+            "itemtype": "method",
+            "name": "flush",
+            "class": "Logger"
+        },
+        {
             "file": "lib/utils.js",
             "line": 10,
             "description": "An extend function that applies the result of a callback to each item",
@@ -216,7 +317,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 72,
+            "line": 82,
             "description": "Wraps a function into another function that sets another function as the __super() function\nThis is used to wrap every single function of an object so that one can call\n\nthis.__super();\n\nto call its parent function that was overwritten.",
             "itemtype": "method",
             "name": "superWrapper",
@@ -240,7 +341,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 109,
+            "line": 119,
             "description": "Combines multiple strings into one, making sure that the glue-string doesn't get applied when not required",
             "itemtype": "method",
             "name": "combine",
@@ -264,7 +365,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 133,
+            "line": 143,
             "description": "Turns a string into a filesystem safe filename",
             "itemtype": "method",
             "name": "fileNameSafe",
@@ -282,17 +383,77 @@
             "class": "utils"
         },
         {
+            "file": "lib/utils.js",
+            "line": 154,
+            "description": "Safely requires a module",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "class": "utils"
+        },
+        {
             "file": "index.js",
-            "line": 11,
-            "description": "Version of the selenium server",
+            "line": 6,
+            "description": "Base class",
+            "itemtype": "property",
+            "name": "Base",
+            "type": "{Base}",
+            "class": ""
+        },
+        {
+            "file": "index.js",
+            "line": 14,
+            "description": "Utils functions",
+            "itemtype": "property",
+            "name": "utils",
+            "type": "{object}",
+            "class": ""
+        },
+        {
+            "file": "index.js",
+            "line": 22,
+            "description": "Logger",
+            "itemtype": "property",
+            "name": "log",
+            "type": "{object}",
+            "class": ""
+        },
+        {
+            "file": "index.js",
+            "line": 31,
+            "description": "Version",
             "type": "{string}",
             "class": ""
         }
     ],
     "warnings": [
         {
-            "message": "Missing item type\nVersion of the selenium server",
-            "line": " index.js:11"
+            "message": "Missing item type\nArguments logger with custom functionality",
+            "line": " lib/log.js:15"
+        },
+        {
+            "message": "Missing item type\nLogger management object",
+            "line": " lib/log.js:69"
+        },
+        {
+            "message": "Missing item type\nReturn logger for a specific file",
+            "line": " lib/log.js:99"
+        },
+        {
+            "message": "Missing item type\nSafely requires a module",
+            "line": " lib/utils.js:154"
+        },
+        {
+            "message": "Missing item type\nVersion",
+            "line": " index.js:31"
         }
     ]
 }
