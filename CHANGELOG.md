@@ -3,6 +3,7 @@ CHANGELOG
 
 v0.9.5
 * Added defensive checks
+* Removed generic logger
 
 v0.9.4 - 02/18/14
 * Added the safe "require" function in "utils"
