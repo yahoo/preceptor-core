@@ -5,6 +5,9 @@ var LogManager = require('../').LogManager;
 
 var manager = new LogManager();
 
+manager.addLogger("callback").addListener(function (batchId, level, data) {
+    console.log(batchId, level, data);
+});
 manager.addLogger("console");
 manager.addLogger("file", { clear:true });
 manager.addLogger("event").on('message', function (level, args, data) {

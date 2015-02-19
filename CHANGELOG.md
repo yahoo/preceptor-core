@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+v0.9.5
+* Added defensive checks
+
 v0.9.4 - 02/18/14
 * Added the safe "require" function in "utils"
 
