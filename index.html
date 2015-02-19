@@ -84,23 +84,19 @@
 
 <p>Install this module with the following command:</p>
 
-<div class="highlight highlight-shell"><pre>npm install preceptor-core
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm install preceptor-core</pre></div>
 
 <p>Add the module to your <code>package.json</code> dependencies:</p>
 
-<div class="highlight highlight-shell"><pre>npm install --save preceptor-core
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm install --save preceptor-core</pre></div>
 
 <p>Add the module to your <code>package.json</code> dev-dependencies:</p>
 
-<div class="highlight highlight-shell"><pre>npm install --save-dev preceptor-core
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm install --save-dev preceptor-core</pre></div>
 
 <p>Require the module in your source-code:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">core</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">);</span>
-</pre></div>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> core <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>);</pre></div>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
@@ -190,182 +186,181 @@ Overwrite this value in instances to help to help identifying instances during r
 <h4>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">Base</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">Base</span><span class="p">;</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Base <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).Base;
 
-<span class="cm">/**</span>
-<span class="cm"> * @class Pet</span>
-<span class="cm"> * @extends Base</span>
-<span class="cm"> * @properties {string} _type Type of pet</span>
-<span class="cm"> * @properties {string} _name Name of pet</span>
-<span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">Pet</span> <span class="o">=</span> <span class="nx">Base</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+<span class="pl-c">/**</span>
+<span class="pl-c"> * @class Pet</span>
+<span class="pl-c"> * @extends Base</span>
+<span class="pl-c"> * @properties {string} _type Type of pet</span>
+<span class="pl-c"> * @properties {string} _name Name of pet</span>
+<span class="pl-c"> */</span>
+<span class="pl-s">var</span> Pet <span class="pl-k">=</span> Base.extend(
 
-    <span class="cm">/**</span>
-<span class="cm">     * Constructor of Pet</span>
-<span class="cm">     *</span>
-<span class="cm">     * @constructor</span>
-<span class="cm">     * @param {string} type Type of pet</span>
-<span class="cm">     * @param {string} name Name of pet</span>
-<span class="cm">     */</span>
-     <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="pl-c">/**</span>
+<span class="pl-c">     * Constructor of Pet</span>
+<span class="pl-c">     *</span>
+<span class="pl-c">     * @constructor</span>
+<span class="pl-c">     * @param {string} type Type of pet</span>
+<span class="pl-c">     * @param {string} name Name of pet</span>
+<span class="pl-c">     */</span>
+     <span class="pl-st">function</span> (<span class="pl-vpf">type</span>, <span class="pl-vpf">name</span>) {
 
-        <span class="c1">// Call the parent constructor</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">();</span>
+        <span class="pl-c">// Call the parent constructor</span>
+        <span class="pl-v">this</span>.__super();
 
-        <span class="c1">// Save property on the current object</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">_type</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="pl-c">// Save property on the current object</span>
+        <span class="pl-v">this</span>._type <span class="pl-k">=</span> type;
+        <span class="pl-v">this</span>._name <span class="pl-k">=</span> name;
 
-        <span class="c1">// Add instance descriptor</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">type</span> <span class="o">+</span> <span class="s1">':'</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="pl-c">// Add instance descriptor</span>
+        <span class="pl-v">this</span>.NAME <span class="pl-k">=</span> type <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span>:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> name;
 
-        <span class="c1">// Define here all dynamic values, values that should not be shared between multiple instances of "Pet".</span>
-    <span class="p">},</span>
+        <span class="pl-c">// Define here all dynamic values, values that should not be shared between multiple instances of "Pet".</span>
+    },
 
-    <span class="cm">/** @lends Pet.prototype */</span>
-    <span class="p">{</span> <span class="c1">// Properties assigned to the prototype of "Pet"</span>
+    <span class="pl-c">/** @lends Pet.prototype */</span>
+    { <span class="pl-c">// Properties assigned to the prototype of "Pet"</span>
 
-        <span class="cm">/**</span>
-<span class="cm">         * Make sound of pet</span>
-<span class="cm">         *</span>
-<span class="cm">         * @param {string} sound</span>
-<span class="cm">         * @method makeSound</span>
-<span class="cm">         */</span>
-        <span class="nx">makeSound</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">sound</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'sound'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">getName</span><span class="p">(),</span> <span class="nx">sound</span><span class="p">);</span>
+        <span class="pl-c">/**</span>
+<span class="pl-c">         * Make sound of pet</span>
+<span class="pl-c">         *</span>
+<span class="pl-c">         * @param {string} sound</span>
+<span class="pl-c">         * @method makeSound</span>
+<span class="pl-c">         */</span>
+        <span class="pl-en">makeSound</span>: <span class="pl-st">function</span> (<span class="pl-vpf">sound</span>) {
+            <span class="pl-v">this</span>.emit(<span class="pl-s1"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-v">this</span>.getName(), sound);
 
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s2">" says: "</span> <span class="o">+</span> <span class="nx">sound</span><span class="p">);</span>
-        <span class="p">},</span>
+            <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-v">this</span>.getName() <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span> says: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
+        },
 
-        <span class="cm">/**</span>
-<span class="cm">         * Gets the name of the pet</span>
-<span class="cm">         *</span>
-<span class="cm">         * @return {string}</span>
-<span class="cm">         */</span>
-        <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
-        <span class="p">}</span>
+        <span class="pl-c">/**</span>
+<span class="pl-c">         * Gets the name of the pet</span>
+<span class="pl-c">         *</span>
+<span class="pl-c">         * @return {string}</span>
+<span class="pl-c">         */</span>
+        <span class="pl-en">getName</span>: <span class="pl-st">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-v">this</span>._name;
+        }
 
-        <span class="c1">// ...</span>
-        <span class="c1">// Any other functions and values assigned to the prototype.</span>
+        <span class="pl-c">// ...</span>
+        <span class="pl-c">// Any other functions and values assigned to the prototype.</span>
 
-        <span class="c1">// These properties can be accessed after instantiation with ```petInstance.makeSound()```.</span>
+        <span class="pl-c">// These properties can be accessed after instantiation with ```petInstance.makeSound()```.</span>
 
-        <span class="c1">// You can also define here all values that should be available in instances of "Pet" that should be shared</span>
-        <span class="c1">// across all object instances.</span>
-    <span class="p">},</span>
+        <span class="pl-c">// You can also define here all values that should be available in instances of "Pet" that should be shared</span>
+        <span class="pl-c">// across all object instances.</span>
+    },
 
-    <span class="cm">/** @lends Pet */</span>
-    <span class="p">{</span> <span class="c1">// Properties assigned to the constructor of "Pet"</span>
+    <span class="pl-c">/** @lends Pet */</span>
+    { <span class="pl-c">// Properties assigned to the constructor of "Pet"</span>
 
-        <span class="cm">/**</span>
-<span class="cm">         * @type {string}</span>
-<span class="cm">         */</span>
-        <span class="nx">TYPE</span><span class="o">:</span> <span class="s2">"Pet"</span>
+        <span class="pl-c">/**</span>
+<span class="pl-c">         * @type {string}</span>
+<span class="pl-c">         */</span>
+        TYPE<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Pet<span class="pl-pds">"</span></span>
 
-        <span class="c1">// ...</span>
-        <span class="c1">// Any other constructor functions and values.</span>
+        <span class="pl-c">// ...</span>
+        <span class="pl-c">// Any other constructor functions and values.</span>
 
-        <span class="c1">// These properties can be accessed with ```Pet.TYPE```.</span>
-    <span class="p">}</span>
-<span class="p">);</span>
+        <span class="pl-c">// These properties can be accessed with ```Pet.TYPE```.</span>
+    }
+);
 
-<span class="cm">/**</span>
-<span class="cm"> * @class Cat</span>
-<span class="cm"> * @extends Pet</span>
-<span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">Pet</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+<span class="pl-c">/**</span>
+<span class="pl-c"> * @class Cat</span>
+<span class="pl-c"> * @extends Pet</span>
+<span class="pl-c"> */</span>
+<span class="pl-s">var</span> Cat <span class="pl-k">=</span> Pet.extend(
 
-    <span class="cm">/**</span>
-<span class="cm">     * Constructor of Cat</span>
-<span class="cm">     *</span>
-<span class="cm">     * @constructor</span>
-<span class="cm">     * @param {string} name Name of pet</span>
-<span class="cm">     */</span>
-    <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="s2">"cat"</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
-    <span class="p">},</span>
+    <span class="pl-c">/**</span>
+<span class="pl-c">     * Constructor of Cat</span>
+<span class="pl-c">     *</span>
+<span class="pl-c">     * @constructor</span>
+<span class="pl-c">     * @param {string} name Name of pet</span>
+<span class="pl-c">     */</span>
+    <span class="pl-st">function</span> (<span class="pl-vpf">name</span>) {
+        <span class="pl-v">this</span>.__super(<span class="pl-s1"><span class="pl-pds">"</span>cat<span class="pl-pds">"</span></span>, name);
+    },
 
-    <span class="cm">/** @lends Cat.prototype */</span>
-    <span class="p">{</span> <span class="c1">// Properties assigned to the prototype of "Cat"</span>
-        <span class="cm">/**</span>
-<span class="cm">         * Make sound of cat</span>
-<span class="cm">         *</span>
-<span class="cm">         * @method makeSound</span>
-<span class="cm">         */</span>
-        <span class="nx">makeSound</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="s2">"miau"</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="pl-c">/** @lends Cat.prototype */</span>
+    { <span class="pl-c">// Properties assigned to the prototype of "Cat"</span>
+        <span class="pl-c">/**</span>
+<span class="pl-c">         * Make sound of cat</span>
+<span class="pl-c">         *</span>
+<span class="pl-c">         * @method makeSound</span>
+<span class="pl-c">         */</span>
+        <span class="pl-en">makeSound</span>: <span class="pl-st">function</span> () {
+            <span class="pl-v">this</span>.__super(<span class="pl-s1"><span class="pl-pds">"</span>miau<span class="pl-pds">"</span></span>);
+        }
+    },
 
-    <span class="cm">/** @lends Cat */</span>
-    <span class="p">{</span> <span class="c1">// Properties assigned to the constructor of "Cat"</span>
-        <span class="cm">/**</span>
-<span class="cm">         * @type {string}</span>
-<span class="cm">         */</span>
-        <span class="nx">TYPE</span><span class="o">:</span> <span class="s2">"Cat"</span>
-    <span class="p">}</span>
-<span class="p">);</span>
+    <span class="pl-c">/** @lends Cat */</span>
+    { <span class="pl-c">// Properties assigned to the constructor of "Cat"</span>
+        <span class="pl-c">/**</span>
+<span class="pl-c">         * @type {string}</span>
+<span class="pl-c">         */</span>
+        TYPE<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span>
+    }
+);
 
-<span class="cm">/**</span>
-<span class="cm"> * @class Dog</span>
-<span class="cm"> * @extends Pet</span>
-<span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">Dog</span> <span class="o">=</span> <span class="nx">Pet</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+<span class="pl-c">/**</span>
+<span class="pl-c"> * @class Dog</span>
+<span class="pl-c"> * @extends Pet</span>
+<span class="pl-c"> */</span>
+<span class="pl-s">var</span> Dog <span class="pl-k">=</span> Pet.extend(
 
-    <span class="cm">/**</span>
-<span class="cm">     * Constructor of Dog</span>
-<span class="cm">     *</span>
-<span class="cm">     * @constructor</span>
-<span class="cm">     * @param {string} name Name of pet</span>
-<span class="cm">     */</span>
-        <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="s2">"dog"</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
-    <span class="p">},</span>
+    <span class="pl-c">/**</span>
+<span class="pl-c">     * Constructor of Dog</span>
+<span class="pl-c">     *</span>
+<span class="pl-c">     * @constructor</span>
+<span class="pl-c">     * @param {string} name Name of pet</span>
+<span class="pl-c">     */</span>
+        <span class="pl-st">function</span> (<span class="pl-vpf">name</span>) {
+        <span class="pl-v">this</span>.__super(<span class="pl-s1"><span class="pl-pds">"</span>dog<span class="pl-pds">"</span></span>, name);
+    },
 
-    <span class="cm">/** @lends Dog.prototype */</span>
-    <span class="p">{</span> <span class="c1">// Properties assigned to the prototype of "Dog"</span>
-        <span class="cm">/**</span>
-<span class="cm">         * Make sound of cat</span>
-<span class="cm">         *</span>
-<span class="cm">         * @method makeSound</span>
-<span class="cm">         */</span>
-        <span class="nx">makeSound</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="s2">"barf"</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="pl-c">/** @lends Dog.prototype */</span>
+    { <span class="pl-c">// Properties assigned to the prototype of "Dog"</span>
+        <span class="pl-c">/**</span>
+<span class="pl-c">         * Make sound of cat</span>
+<span class="pl-c">         *</span>
+<span class="pl-c">         * @method makeSound</span>
+<span class="pl-c">         */</span>
+        <span class="pl-en">makeSound</span>: <span class="pl-st">function</span> () {
+            <span class="pl-v">this</span>.__super(<span class="pl-s1"><span class="pl-pds">"</span>barf<span class="pl-pds">"</span></span>);
+        }
+    },
 
-    <span class="cm">/** @lends Dog */</span>
-    <span class="p">{</span> <span class="c1">// Properties assigned to the constructor of "Dog"</span>
-        <span class="cm">/**</span>
-<span class="cm">         * @type {string}</span>
-<span class="cm">         */</span>
-        <span class="nx">TYPE</span><span class="o">:</span> <span class="s2">"Dog"</span>
-    <span class="p">}</span>
-<span class="p">);</span>
+    <span class="pl-c">/** @lends Dog */</span>
+    { <span class="pl-c">// Properties assigned to the constructor of "Dog"</span>
+        <span class="pl-c">/**</span>
+<span class="pl-c">         * @type {string}</span>
+<span class="pl-c">         */</span>
+        TYPE<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Dog<span class="pl-pds">"</span></span>
+    }
+);
 
-<span class="kd">var</span> <span class="nx">tomTheCat</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">(</span><span class="s2">"Tom"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">zeusTheDog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="s2">"Zeus"</span><span class="p">);</span>
+<span class="pl-s">var</span> tomTheCat <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Cat</span>(<span class="pl-s1"><span class="pl-pds">"</span>Tom<span class="pl-pds">"</span></span>);
+<span class="pl-s">var</span> zeusTheDog <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Dog</span>(<span class="pl-s1"><span class="pl-pds">"</span>Zeus<span class="pl-pds">"</span></span>);
 
-<span class="c1">// Listen to events</span>
-<span class="nx">tomTheCat</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'sound'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sound</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"The cat said "</span> <span class="o">+</span> <span class="nx">sound</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">zeusTheDog</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'sound'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sound</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"The dog said "</span> <span class="o">+</span> <span class="nx">sound</span><span class="p">);</span>
-<span class="p">});</span>
+<span class="pl-c">// Listen to events</span>
+tomTheCat.on(<span class="pl-s1"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">name</span>, <span class="pl-vpf">sound</span>) {
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>The cat said <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
+});
+zeusTheDog.on(<span class="pl-s1"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">name</span>, <span class="pl-vpf">sound</span>) {
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>The dog said <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
+});
 
-<span class="c1">// Make sounds</span>
-<span class="nx">tomTheCat</span><span class="p">.</span><span class="nx">makeSound</span><span class="p">();</span>
-<span class="nx">zeusTheDog</span><span class="p">.</span><span class="nx">makeSound</span><span class="p">();</span>
+<span class="pl-c">// Make sounds</span>
+tomTheCat.makeSound();
+zeusTheDog.makeSound();
 
-<span class="c1">// Print instance identifier</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Cat object: "</span> <span class="o">+</span> <span class="nx">Cat</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Cat instance"</span><span class="p">,</span> <span class="nx">tomTheCat</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="pl-c">// Print instance identifier</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Cat object: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> Cat.<span class="pl-s3">toString</span>());
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Cat instance<span class="pl-pds">"</span></span>, tomTheCat.<span class="pl-s3">toString</span>());
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Dog object: "</span> <span class="o">+</span> <span class="nx">Dog</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Dog instance"</span><span class="p">,</span> <span class="nx">zeusTheDog</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
-</pre></div>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Dog object: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> Dog.<span class="pl-s3">toString</span>());
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Dog instance<span class="pl-pds">"</span></span>, zeusTheDog.<span class="pl-s3">toString</span>());</pre></div>
 
 <p><em>Output:</em></p>
 
@@ -373,11 +368,10 @@ Overwrite this value in instances to help to help identifying instances during r
 Tom says: miau
 The dog said barf
 Zeus says: barf
-Cat object: <span class="o">[</span>Cat<span class="o">]</span>
-Cat instance <span class="o">[</span>Cat::cat:Tom<span class="o">(</span>instance1<span class="o">)]</span>
-Dog object: <span class="o">[</span>Dog<span class="o">]</span>
-Dog instance <span class="o">[</span>Dog::dog:Zeus<span class="o">(</span>instance2<span class="o">)]</span>
-</pre></div>
+Cat object: [Cat]
+Cat instance [Cat::cat:Tom(instance1)]
+Dog object: [Dog]
+Dog instance [Dog::dog:Zeus(instance2)]</pre></div>
 
 <hr>
 
@@ -424,78 +418,72 @@ Dog instance <span class="o">[</span>Dog::dog:Zeus<span class="o">(</span>instan
 <h4>
 <a id="example---simple-extend" class="anchor" href="#example---simple-extend" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Simple extend</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../../'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">result</span><span class="p">;</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>../../<span class="pl-pds">'</span></span>).utils;
+<span class="pl-s">var</span> result;
 
-<span class="kd">var</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"obj1"</span><span class="p">,</span>
-    <span class="s2">"entry1"</span><span class="o">:</span> <span class="mi">23</span><span class="p">,</span>
-    <span class="s2">"entry2"</span><span class="o">:</span> <span class="mi">46</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> obj1 <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>obj1<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>entry1<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">46</span>
+};
 
-<span class="kd">var</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"obj2"</span><span class="p">,</span>
-    <span class="s2">"entry2"</span><span class="o">:</span> <span class="mi">78</span><span class="p">,</span>
-    <span class="s2">"entry3"</span><span class="o">:</span> <span class="mi">2</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> obj2 <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>obj2<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">78</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>entry3<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>
+};
 
-<span class="kd">var</span> <span class="nx">srcObj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"entry0"</span><span class="o">:</span> <span class="mi">0</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> srcObj <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>
+};
 
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Simple extend:"</span><span class="p">);</span>
-<span class="nx">utils</span><span class="p">.</span><span class="nx">extendApply</span><span class="p">(</span><span class="nx">srcObj</span><span class="p">,</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">]);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">srcObj</span><span class="p">);</span>
-</pre></div>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Simple extend:<span class="pl-pds">"</span></span>);
+utils.extendApply(srcObj, [obj1, obj2]);
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(srcObj);</pre></div>
 
 <p>Output:</p>
 
 <div class="highlight highlight-shell"><pre>Simple extend:
-<span class="o">{</span> entry0: 0, name: <span class="s1">'obj2'</span>, entry1: 23, entry2: 78, entry3: <span class="m">2</span> <span class="o">}</span>
-</pre></div>
+{ entry0: 0, name: <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span>, entry1: 23, entry2: 78, entry3: 2 }</pre></div>
 
 <h4>
 <a id="example---extend-with-apply-function" class="anchor" href="#example---extend-with-apply-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Extend with apply function</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Extend with function:"</span><span class="p">);</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">extendApply</span><span class="p">({},</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-</pre></div>
+<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Extend with function:<span class="pl-pds">"</span></span>);
+result <span class="pl-k">=</span> utils.extendApply({}, [obj1, obj2], <span class="pl-st">function</span> (<span class="pl-vpf">value</span>) {
+    <span class="pl-k">return</span> value <span class="pl-k">+</span> <span class="pl-c1">1</span>;
+});
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(result);</pre></div>
 
 <p>Output:</p>
 
-<div class="highlight highlight-shell"><pre>Extend with <span class="k">function</span>:
-<span class="o">{</span> name: <span class="s1">'obj21'</span>, entry1: 24, entry2: 79, entry3: <span class="m">3</span> <span class="o">}</span>
-</pre></div>
+<div class="highlight highlight-shell"><pre>Extend with function:
+{ name: <span class="pl-s1"><span class="pl-pds">'</span>obj21<span class="pl-pds">'</span></span>, entry1: 24, entry2: 79, entry3: 3 }</pre></div>
 
 <h4>
 <a id="example---logging-extend-apply-calls" class="anchor" href="#example---logging-extend-apply-calls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Logging extend apply calls</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Extend logging:"</span><span class="p">);</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">extendApply</span><span class="p">({},</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">srcValue</span><span class="p">,</span> <span class="nx">dstValue</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Extend logging:<span class="pl-pds">"</span></span>);
+result <span class="pl-k">=</span> utils.extendApply({}, [obj1, obj2], <span class="pl-st">function</span> (<span class="pl-vpf">srcValue</span>, <span class="pl-vpf">dstValue</span>, <span class="pl-vpf">options</span>) {
 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"The value '"</span> <span class="o">+</span> <span class="nx">srcValue</span> <span class="o">+</span> <span class="s2">"' with key '"</span> <span class="o">+</span> <span class="nx">options</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">"' from object with name '"</span> <span class="o">+</span>
-        <span class="nx">options</span><span class="p">.</span><span class="nx">currentObject</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span>  <span class="s2">"' was '"</span> <span class="o">+</span> <span class="nx">dstValue</span> <span class="o">+</span> <span class="s2">"' in the original object"</span><span class="p">);</span>
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>The value '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> srcValue <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>' with key '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> options.key <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>' from object with name '<span class="pl-pds">"</span></span> <span class="pl-k">+</span>
+        options.currentObject.<span class="pl-sc">name</span> <span class="pl-k">+</span>  <span class="pl-s1"><span class="pl-pds">"</span>' was '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> dstValue <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>' in the original object<span class="pl-pds">"</span></span>);
 
-    <span class="k">return</span> <span class="nx">options</span><span class="p">.</span><span class="nx">objectIndex</span> <span class="o">+</span> <span class="s1">':'</span> <span class="o">+</span> <span class="nx">options</span><span class="p">.</span><span class="nx">valueIndex</span><span class="p">;</span>
-<span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-</pre></div>
+    <span class="pl-k">return</span> options.objectIndex <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span>:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> options.valueIndex;
+});
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(result);</pre></div>
 
 <p>Output:</p>
 
 <div class="highlight highlight-shell"><pre>Extend logging:
-The value <span class="s1">'obj1'</span> with key <span class="s1">'name'</span> from object with name <span class="s1">'obj1'</span> was <span class="s1">'undefined'</span> in the original object
-The value <span class="s1">'23'</span> with key <span class="s1">'entry1'</span> from object with name <span class="s1">'obj1'</span> was <span class="s1">'undefined'</span> in the original object
-The value <span class="s1">'46'</span> with key <span class="s1">'entry2'</span> from object with name <span class="s1">'obj1'</span> was <span class="s1">'undefined'</span> in the original object
-The value <span class="s1">'obj2'</span> with key <span class="s1">'name'</span> from object with name <span class="s1">'obj2'</span> was <span class="s1">'0:0'</span> in the original object
-The value <span class="s1">'78'</span> with key <span class="s1">'entry2'</span> from object with name <span class="s1">'obj2'</span> was <span class="s1">'0:2'</span> in the original object
-The value <span class="s1">'2'</span> with key <span class="s1">'entry3'</span> from object with name <span class="s1">'obj2'</span> was <span class="s1">'undefined'</span> in the original object
-<span class="o">{</span> name: <span class="s1">'1:0'</span>, entry1: <span class="s1">'0:1'</span>, entry2: <span class="s1">'1:1'</span>, entry3: <span class="s1">'1:2'</span> <span class="o">}</span>
-</pre></div>
+The value <span class="pl-s1"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s1"><span class="pl-pds">'</span>23<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>entry1<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s1"><span class="pl-pds">'</span>46<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>entry2<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>0:0<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s1"><span class="pl-pds">'</span>78<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>entry2<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>0:2<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s1"><span class="pl-pds">'</span>2<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>entry3<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+{ name: <span class="pl-s1"><span class="pl-pds">'</span>1:0<span class="pl-pds">'</span></span>, entry1: <span class="pl-s1"><span class="pl-pds">'</span>0:1<span class="pl-pds">'</span></span>, entry2: <span class="pl-s1"><span class="pl-pds">'</span>1:1<span class="pl-pds">'</span></span>, entry3: <span class="pl-s1"><span class="pl-pds">'</span>1:2<span class="pl-pds">'</span></span> }</pre></div>
 
 <hr>
 
@@ -520,75 +508,71 @@ The value <span class="s1">'2'</span> with key <span class="s1">'entry3'</span> 
 <h4>
 <a id="example-simple-usage" class="anchor" href="#example-simple-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="kd">var</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"entry1"</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-    <span class="s2">"entry2"</span><span class="o">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-    <span class="s2">"entry4"</span><span class="o">:</span> <span class="mi">23</span><span class="p">,</span>
-    <span class="s2">"entry5"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"entry6"</span><span class="o">:</span> <span class="mi">22</span><span class="p">,</span>
-        <span class="s2">"entry7"</span><span class="o">:</span> <span class="mi">24</span><span class="p">,</span>
-        <span class="s2">"entry8"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"entry9"</span><span class="o">:</span> <span class="mi">9</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> obj1 <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>entry1<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>],
+    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">5</span>, <span class="pl-c1">6</span>],
+    <span class="pl-s1"><span class="pl-pds">"</span>entry4<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>entry6<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">22</span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>entry7<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">24</span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>entry8<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>entry9<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">9</span>
+        }
+    }
+};
 
-<span class="kd">var</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"entry2"</span><span class="o">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
-    <span class="s2">"entry3"</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s2">"entry5"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"entry7"</span><span class="o">:</span> <span class="mi">21</span><span class="p">,</span>
-        <span class="s2">"entry10"</span><span class="o">:</span> <span class="mi">11</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> obj2 <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">8</span>, <span class="pl-c1">9</span>],
+    <span class="pl-s1"><span class="pl-pds">"</span>entry3<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>entry7<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">21</span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>entry10<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">11</span>
+    }
+};
 
-<span class="kd">var</span> <span class="nx">srcObj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"entry0"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"entry2"</span><span class="o">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span>
-    <span class="s2">"entry5"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"entry0"</span><span class="o">:</span> <span class="s2">"zero"</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> srcObj <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">7</span>],
+    <span class="pl-s1"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>zero<span class="pl-pds">"</span></span>
+    }
+};
 
-<span class="nx">utils</span><span class="p">.</span><span class="nx">deepExtend</span><span class="p">(</span><span class="nx">srcObj</span><span class="p">,</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">]);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">srcObj</span><span class="p">);</span>
-</pre></div>
+utils.deepExtend(srcObj, [obj1, obj2]);
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(srcObj);</pre></div>
 
 <p>Output:</p>
 
-<div class="highlight highlight-shell"><pre><span class="o">{</span> entry0: 0,
-  entry2: <span class="o">[</span> 7, 5, 6, 8, <span class="m">9</span> <span class="o">]</span>,
+<div class="highlight highlight-shell"><pre>{ entry0: 0,
+  entry2: [ 7, 5, 6, 8, 9 ],
   entry5:
-   <span class="o">{</span> entry0: <span class="s1">'zero'</span>,
+   { entry0: <span class="pl-s1"><span class="pl-pds">'</span>zero<span class="pl-pds">'</span></span>,
      entry6: 22,
      entry7: 21,
-     entry8: <span class="o">{</span> entry9: <span class="m">9</span> <span class="o">}</span>,
-     entry10: <span class="m">11</span> <span class="o">}</span>,
-  entry1: <span class="o">[</span> 1, 2, <span class="m">3</span> <span class="o">]</span>,
+     entry8: { entry9: 9 },
+     entry10: 11 },
+  entry1: [ 1, 2, 3 ],
   entry4: 23,
-  entry3: <span class="m">2</span> <span class="o">}</span>
-</pre></div>
+  entry3: 2 }</pre></div>
 
 <h4>
 <a id="example-use-with-replace" class="anchor" href="#example-use-with-replace" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Use with replace</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">result</span><span class="p">;</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
+<span class="pl-s">var</span> result;
 
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">deepExtend</span><span class="p">({},</span> <span class="p">[</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">],</span> <span class="p">{</span> <span class="nx">replace</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-</pre></div>
+result <span class="pl-k">=</span> utils.deepExtend({}, [obj1, obj2], { replace<span class="pl-k">:</span> <span class="pl-c1">true</span> });
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(result);</pre></div>
 
 <p>Output:</p>
 
-<div class="highlight highlight-shell"><pre><span class="o">{</span> entry1: <span class="o">[</span> 1, 2, <span class="m">3</span> <span class="o">]</span>,
-    entry2: <span class="o">[</span> 8, <span class="m">9</span> <span class="o">]</span>,
+<div class="highlight highlight-shell"><pre>{ entry1: [ 1, 2, 3 ],
+    entry2: [ 8, 9 ],
     entry4: 23,
-    entry5: <span class="o">{</span> entry6: 22, entry7: 21, entry8: <span class="o">{</span> entry9: <span class="m">9</span> <span class="o">}</span>, entry10: <span class="m">11</span> <span class="o">}</span>,
-    entry3: <span class="m">2</span> <span class="o">}</span>
-</pre></div>
+    entry5: { entry6: 22, entry7: 21, entry8: { entry9: 9 }, entry10: 11 },
+    entry3: 2 }</pre></div>
 
 <hr>
 
@@ -611,23 +595,22 @@ The value <span class="s1">'2'</span> with key <span class="s1">'entry3'</span> 
 <h4>
 <a id="example-simple-usage-1" class="anchor" href="#example-simple-usage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">''</span><span class="p">));</span>
-<span class="c1">// Output: -</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>));
+<span class="pl-c">// Output: -</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'test1'</span><span class="p">,</span> <span class="s1">'test2'</span><span class="p">));</span>
-<span class="c1">// Output: test1-test2</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test1<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test2<span class="pl-pds">'</span></span>));
+<span class="pl-c">// Output: test1-test2</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'-test1-'</span><span class="p">,</span> <span class="s1">'-test2-'</span><span class="p">));</span>
-<span class="c1">// Output: -test1-test2-</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>-test1-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>-test2-<span class="pl-pds">'</span></span>));
+<span class="pl-c">// Output: -test1-test2-</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'test1-'</span><span class="p">,</span> <span class="s1">'test2'</span><span class="p">));</span>
-<span class="c1">// Output: test1-test2</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test1-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test2<span class="pl-pds">'</span></span>));
+<span class="pl-c">// Output: test1-test2</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">combine</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'test1'</span><span class="p">,</span> <span class="s1">'-test2'</span><span class="p">));</span>
-<span class="c1">// Output: test1-test2</span>
-</pre></div>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test1<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>-test2<span class="pl-pds">'</span></span>));
+<span class="pl-c">// Output: test1-test2</span></pre></div>
 
 <hr>
 
@@ -648,50 +631,46 @@ The value <span class="s1">'2'</span> with key <span class="s1">'entry3'</span> 
 <h4>
 <a id="example-simple-usage-2" class="anchor" href="#example-simple-usage-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="kd">var</span> <span class="nx">newFn</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">superWrapper</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Method test in object 2 and value "</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value1</span><span class="p">,</span> <span class="nx">value2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Method test in object 1 and values "</span> <span class="o">+</span> <span class="nx">value1</span> <span class="o">+</span> <span class="s2">" and "</span> <span class="o">+</span> <span class="nx">value2</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">newFn</span><span class="p">(</span><span class="mi">88</span><span class="p">);</span>
-</pre></div>
+<span class="pl-s">var</span> newFn <span class="pl-k">=</span> utils.superWrapper(<span class="pl-st">function</span> (<span class="pl-vpf">value</span>) {
+    <span class="pl-v">this</span>.__super(<span class="pl-c1">123</span>, value);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Method test in object 2 and value <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value);
+}, <span class="pl-st">function</span> (<span class="pl-vpf">value1</span>, <span class="pl-vpf">value2</span>) {
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Method test in object 1 and values <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value1 <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span> and <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value2);
+});
+newFn(<span class="pl-c1">88</span>);</pre></div>
 
 <p>Output:</p>
 
-<div class="highlight highlight-shell"><pre>Method <span class="nb">test </span>in object <span class="m">1</span> and values <span class="m">123</span> and 88
-Method <span class="nb">test </span>in object <span class="m">2</span> and value 88
-</pre></div>
+<div class="highlight highlight-shell"><pre>Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 1 and values 123 and 88
+Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and value 88</pre></div>
 
 <h4>
 <a id="example-usage-with-extendapply" class="anchor" href="#example-usage-with-extendapply" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Usage with extendApply</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'preceptor-core'</span><span class="p">).</span><span class="nx">utils</span><span class="p">;</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="kd">var</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">test</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value1</span><span class="p">,</span> <span class="nx">value2</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Method test in object 1 and values "</span> <span class="o">+</span> <span class="nx">value1</span> <span class="o">+</span> <span class="s2">" and "</span> <span class="o">+</span> <span class="nx">value2</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> obj1 <span class="pl-k">=</span> {
+    <span class="pl-en">test</span>: <span class="pl-st">function</span> (<span class="pl-vpf">value1</span>, <span class="pl-vpf">value2</span>) {
+        <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Method test in object 1 and values <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value1 <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span> and <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value2);
+    }
+};
 
-<span class="kd">var</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">test</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">__super</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Method test in object 2 and value "</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> obj2 <span class="pl-k">=</span> {
+    <span class="pl-en">test</span>: <span class="pl-st">function</span> (<span class="pl-vpf">value</span>) {
+        <span class="pl-v">this</span>.__super(<span class="pl-c1">123</span>, value);
+        <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Method test in object 2 and value <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value);
+    }
+};
 
-<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">extendApply</span><span class="p">(</span><span class="nx">obj1</span><span class="p">,</span> <span class="p">[</span><span class="nx">obj2</span><span class="p">],</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">superWrapper</span><span class="p">);</span>
-<span class="nx">result</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="mi">88</span><span class="p">);</span>
-</pre></div>
+<span class="pl-s">var</span> result <span class="pl-k">=</span> utils.extendApply(obj1, [obj2], utils.superWrapper);
+result.<span class="pl-s3">test</span>(<span class="pl-c1">88</span>);</pre></div>
 
 <p>Output:</p>
 
-<div class="highlight highlight-shell"><pre>Method <span class="nb">test </span>in object <span class="m">1</span> and values <span class="m">123</span> and 88
-Method <span class="nb">test </span>in object <span class="m">2</span> and value 88
-</pre></div>
+<div class="highlight highlight-shell"><pre>Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 1 and values 123 and 88
+Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and value 88</pre></div>
 
 <hr>
 
@@ -700,8 +679,7 @@ Method <span class="nb">test </span>in object <span class="m">2</span> and value
 
 <p>Generate the documentation with following command:</p>
 
-<div class="highlight highlight-shell"><pre>npm run docs
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm run docs</pre></div>
 
 <p>The documentation will be generated in the <code>docs</code> folder of the module root.</p>
 
@@ -710,8 +688,7 @@ Method <span class="nb">test </span>in object <span class="m">2</span> and value
 
 <p>Run the tests with the following command:</p>
 
-<div class="highlight highlight-shell"><pre>npm run <span class="nb">test</span>
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm run <span class="pl-s3">test</span></pre></div>
 
 <p>The code-coverage will be written to the <code>coverage</code> folder in the module root.</p>
 
@@ -726,6 +703,8 @@ Method <span class="nb">test </span>in object <span class="m">2</span> and value
 <ul>
 <li>underscore: <a href="http://underscorejs.org">http://underscorejs.org</a>
 </li>
+<li>log4js: <a href="https://github.com/stritti/log4js">https://github.com/stritti/log4js</a>
+</li>
 </ul>
 
 <h3>
@@ -733,6 +712,8 @@ Method <span class="nb">test </span>in object <span class="m">2</span> and value
 
 <ul>
 <li>chai: <a href="http://chaijs.com">http://chaijs.com</a>
+</li>
+<li>coveralls: <a href="https://github.com/cainus/node-coveralls">https://github.com/cainus/node-coveralls</a>
 </li>
 <li>istanbul: <a href="https://github.com/gotwarlost/istanbul">https://github.com/gotwarlost/istanbul</a>
 </li>
