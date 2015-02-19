@@ -1,7 +1,7 @@
 Preceptor-Core
 ==============
 
-Shared library for the preceptor test-runner and aggregator.
+Shared library for the preceptor test runner and aggregator.
 
 
 [![Build Status](https://secure.travis-ci.org/yahoo/preceptor-core.png)](http://travis-ci.org/yahoo/preceptor-core)

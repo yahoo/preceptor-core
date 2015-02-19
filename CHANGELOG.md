@@ -4,7 +4,7 @@ CHANGELOG
 v0.9.5 - 02/19/14
 * Added defensive checks
 * Removed generic logger
-* Add log4js buffered logger
+* Added log4js buffered logger
 
 v0.9.4 - 02/18/14
 * Added the safe "require" function in "utils"
