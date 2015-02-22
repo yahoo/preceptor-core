@@ -31,6 +31,7 @@ module.exports = {
     /**
      * Version
      *
+     * @property version
      * @type {string}
      */
     version: require('./package.json').version
