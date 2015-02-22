@@ -2,7 +2,7 @@
     "project": {
         "name": "preceptor-core",
         "description": "Core components for the preceptor test runner and aggregator",
-        "version": "0.9.5"
+        "version": "0.9.6"
     },
     "files": {
         "lib/base.js": {
@@ -388,9 +388,15 @@
             "description": "Safely requires a module",
             "params": [
                 {
-                    "name": "path",
-                    "description": "",
+                    "name": "module",
+                    "description": "Module name or path",
                     "type": "String"
+                },
+                {
+                    "name": "defaultValue",
+                    "description": "Default value if the module cannot be found",
+                    "type": "*",
+                    "optional": true
                 }
             ],
             "return": {
