@@ -3,6 +3,9 @@
 // Copyright 2014, Yahoo! Inc.
 // Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
 
+var path = require('path');
+var fs = require('fs');
+
 var utils = require('../').utils;
 var expect = require('chai').expect;
 
@@ -556,5 +559,27 @@ describe('utils', function () {
             expect(utils.fileNameSafe("03 this-is-+a?te%@*st string/12")).to.be.equal("03-this-is--a-te---st-string-12");
         });
     });
-});
 
+    describe('require', function () {
+
+        it('should load a file', function () {
+            var filePath = path.join(__dirname, 'resource', 'value.js');
+
+            // Guard
+            expect(fs.existsSync(filePath)).to.be.true;
+
+            // Execute & Verify
+            expect(utils.require(filePath, 24)).to.be.equal(23);
+        });
+
+        it('should use a default value', function () {
+            var filePath = path.join(__dirname, 'resource', 'nonExisting.js');
+
+            // Guard
+            expect(fs.existsSync(filePath)).to.be.false;
+
+            // Execute & Verify
+            expect(utils.require(filePath, 24)).to.be.equal(24);
+        });
+    });
+});
