@@ -7,8 +7,8 @@ Shared library for the preceptor test runner and aggregator.
 [![Build Status](https://secure.travis-ci.org/yahoo/preceptor-core.png)](http://travis-ci.org/yahoo/preceptor-core)
 [![npm version](https://badge.fury.io/js/preceptor-core.svg)](http://badge.fury.io/js/preceptor-core)
 
-[![NPM](https://nodei.co/npm/preceptor-core.png?downloads=true)](https://nodei.co/npm/preceptor-core/)
-
+[![NPM](https://nodei.co/npm/preceptor-core.png?downloads=true&stars=true)](https://nodei.co/npm/preceptor-core/)
+[![NPM](https://nodei.co/npm-dl/preceptor-core.png?months=3&height=2)](https://nodei.co/npm/preceptor-core/)
 
 [API-Documentation](http://yahoo.github.io/preceptor-core/docs/)
 
