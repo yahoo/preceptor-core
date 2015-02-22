@@ -572,6 +572,21 @@ describe('utils', function () {
             expect(utils.require(filePath, 24)).to.be.equal(23);
         });
 
+        it('should fail loading unknown file', function () {
+            var filePath = path.join(__dirname, 'resource', 'nonExisting.js');
+
+            // Guard
+            expect(fs.existsSync(filePath)).to.be.false;
+
+            // Execute & Verify
+            try {
+                utils.require(filePath);
+                expect(true).to.be.false; // Fail when reaching here
+            } catch (err) {
+                // Do nothing
+            }
+        });
+
         it('should use a default value', function () {
             var filePath = path.join(__dirname, 'resource', 'nonExisting.js');
 
