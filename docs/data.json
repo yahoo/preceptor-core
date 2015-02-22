@@ -66,7 +66,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/log.js",
-            "line": 56,
+            "line": 57,
             "description": "Logger object",
             "itemtype": "property"
         },
@@ -171,6 +171,8 @@
             "file": "lib/log.js",
             "line": 15,
             "description": "Arguments logger with custom functionality",
+            "itemtype": "method",
+            "name": "_argumentLogger",
             "params": [
                 {
                     "name": "logger",
@@ -188,7 +190,7 @@
         },
         {
             "file": "lib/log.js",
-            "line": 69,
+            "line": 70,
             "description": "Logger management object",
             "static": "log",
             "type": "{object}",
@@ -196,7 +198,7 @@
         },
         {
             "file": "lib/log.js",
-            "line": 77,
+            "line": 78,
             "description": "Get logging level",
             "itemtype": "method",
             "name": "getLevel",
@@ -208,7 +210,7 @@
         },
         {
             "file": "lib/log.js",
-            "line": 87,
+            "line": 88,
             "description": "Set logging level",
             "itemtype": "method",
             "name": "setLevel",
@@ -223,8 +225,10 @@
         },
         {
             "file": "lib/log.js",
-            "line": 99,
+            "line": 100,
             "description": "Return logger for a specific file",
+            "itemtype": "method",
+            "name": "getLogger",
             "params": [
                 {
                     "name": "filename",
@@ -240,7 +244,7 @@
         },
         {
             "file": "lib/log.js",
-            "line": 111,
+            "line": 113,
             "description": "Flushes all buffered entries",
             "itemtype": "method",
             "name": "flush",
@@ -386,6 +390,8 @@
             "file": "lib/utils.js",
             "line": 154,
             "description": "Safely requires a module",
+            "itemtype": "method",
+            "name": "require",
             "params": [
                 {
                     "name": "module",
@@ -436,30 +442,16 @@
             "file": "index.js",
             "line": 31,
             "description": "Version",
+            "itemtype": "property",
+            "name": "version",
             "type": "{string}",
             "class": ""
         }
     ],
     "warnings": [
         {
-            "message": "Missing item type\nArguments logger with custom functionality",
-            "line": " lib/log.js:15"
-        },
-        {
             "message": "Missing item type\nLogger management object",
-            "line": " lib/log.js:69"
-        },
-        {
-            "message": "Missing item type\nReturn logger for a specific file",
-            "line": " lib/log.js:99"
-        },
-        {
-            "message": "Missing item type\nSafely requires a module",
-            "line": " lib/utils.js:154"
-        },
-        {
-            "message": "Missing item type\nVersion",
-            "line": " index.js:31"
+            "line": " lib/log.js:70"
         }
     ]
 }
