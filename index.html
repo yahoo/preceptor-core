@@ -34,12 +34,13 @@
         <h1>
 <a id="preceptor-core" class="anchor" href="#preceptor-core" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preceptor-Core</h1>
 
-<p>Shared library for the preceptor test-runner and aggregator.</p>
+<p>Shared library for the preceptor test runner and aggregator.</p>
 
 <p><a href="http://travis-ci.org/yahoo/preceptor-core"><img src="https://secure.travis-ci.org/yahoo/preceptor-core.png" alt="Build Status"></a>
 <a href="http://badge.fury.io/js/preceptor-core"><img src="https://badge.fury.io/js/preceptor-core.svg" alt="npm version"></a></p>
 
-<p><a href="https://nodei.co/npm/preceptor-core/"><img src="https://nodei.co/npm/preceptor-core.png?downloads=true" alt="NPM"></a></p>
+<p><a href="https://nodei.co/npm/preceptor-core/"><img src="https://nodei.co/npm/preceptor-core.png?downloads=true&amp;stars=true" alt="NPM"></a>
+<a href="https://nodei.co/npm/preceptor-core/"><img src="https://nodei.co/npm-dl/preceptor-core.png?months=3&amp;height=2" alt="NPM"></a></p>
 
 <p><a href="http://yahoo.github.io/preceptor-core/docs/">API-Documentation</a></p>
 
@@ -671,6 +672,29 @@ result.<span class="pl-s3">test</span>(<span class="pl-c1">88</span>);</pre></di
 
 <div class="highlight highlight-shell"><pre>Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 1 and values 123 and 88
 Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and value 88</pre></div>
+
+<hr>
+
+<h3>
+<a id="require" class="anchor" href="#require" aria-hidden="true"><span class="octicon octicon-link"></span></a>require</h3>
+
+<p>This function does the same thing as the original require function to load modules. However, this function will give you the option to use default values when the module cannot be found.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>module</code> {string} - Module name or path</li>
+<li>
+<code>defaultValue</code> {*} - Default value if the module cannot be found</li>
+</ul>
+
+<h4>
+<a id="example-simple-usage-3" class="anchor" href="#example-simple-usage-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
+
+<span class="pl-s">var</span> configuration <span class="pl-k">=</span> utils.require(<span class="pl-s1"><span class="pl-pds">'</span>config<span class="pl-pds">'</span></span>, {});</pre></div>
 
 <hr>
 
