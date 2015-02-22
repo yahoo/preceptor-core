@@ -552,6 +552,20 @@ Output:
 Method test in object 1 and values 123 and 88
 Method test in object 2 and value 88
 ```
+___
+###require
+This function does the same thing as the original require function to load modules. However, this function will give you the option to use default values when the module cannot be found.
+
+Parameters:
+* ```module``` {string} - Module name or path
+* ```defaultValue``` {*} - Default value if the module cannot be found
+
+####Example: Simple usage
+```javascript
+var utils = require('preceptor-core').utils;
+
+var configuration = utils.require('config', {});
+```
 
 ---
 
