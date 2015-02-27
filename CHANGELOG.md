@@ -3,6 +3,7 @@ CHANGELOG
 
 v0.9.6 - 02/22/14
 * Added a defaultValue to utils.require that will be returned instead of throwing an exception
+* Add support for Node 0.12
 
 v0.9.5 - 02/19/14
 * Added defensive checks
