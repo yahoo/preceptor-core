@@ -10,6 +10,6 @@ docs/
 examples/
 screwdriver/
 Makefile
-.idea
+.idea/
 docs/
 xunit.xml

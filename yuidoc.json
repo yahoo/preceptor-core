@@ -1,7 +1,7 @@
 {
-    "options": {
-        "outdir": "docs",
-        "linkNatives": true,
-        "exclude": "test,example"
-    }
+	"options": {
+		"outdir": "docs",
+		"linkNatives": true,
+		"exclude": "test,examples"
+	}
 }

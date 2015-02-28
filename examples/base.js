@@ -1,4 +1,4 @@
-// Copyright 2014, Yahoo! Inc.
+// Copyright 2014-2015, Yahoo! Inc.
 // Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
 
 var pets = require('./pets');
@@ -13,10 +13,10 @@ var zeusTheDog = new Dog("Zeus");
 
 // Listen to events
 tomTheCat.on('sound', function (name, sound) {
-    console.log("The cat said " + sound);
+	console.log("The cat said " + sound);
 });
 zeusTheDog.on('sound', function (name, sound) {
-    console.log("The dog said " + sound);
+	console.log("The dog said " + sound);
 });
 
 // Make sounds

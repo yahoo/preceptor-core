@@ -26,6 +26,7 @@ Shared library for the preceptor test runner and aggregator.
         * [deepExtend](#deepextend)
         * [combine](#combine)
         * [superWrapper](#superwrapper)
+    * [log](#log)
 * [API-Documentation](#api-documentation)
 * [Tests](#tests)
 * [Third-party libraries](#third-party-libraries)
@@ -569,6 +570,56 @@ var configuration = utils.require('config', {});
 
 ---
 
+##log
+
+The ```log``` object exposes a centralize logging interface including buffering for deferred logging.
+
+This object works with two different type of objects:
+* log - The singleton managing multiple loggers
+* logger - Instance for a specific logger
+
+A new logger can be created by calling the ```getLogger``` method on the ```log``` object:
+```javascript
+var logger = log.getLogger(__filename);
+```
+For each logger, a filename/identifier can be supplied that will be exported with each log trigger.
+
+When having a logger, then log entries can be triggered, including objects:
+```javascript
+logger.debug('Debug message: ', { message: 'something something' });
+```
+
+There are a couple of log-types available:
+* ```logger.trace``` - Trace log entries that could give much more detail on steps through the code
+* ```logger.debug``` - Debug values that might be helpful for debugging problems without being too overwhelming like ```trace```
+* ```logger.info``` - Info messages that is probably helpful for a user to understand what decisions were made
+* ```logger.warn``` - Warning message for missing configuration or other behavior that might be unexpected to the user
+* ```logger.error``` - Errors during execution
+
+These log-types may be filtered depending on the log-level set. The log-levels can be requested and set with the following values:
+```javascript
+log.setLevel('DEBUG');
+
+log.getLevel() // -> DEBUG
+```
+The default value is ```INFO```.
+
+Following log-levels are available:
+* ```ALL``` - All log-types are used which is an alias for ```TRACE```.
+* ```TRACE``` - Trace messages and all messages with the log-type below will be used.
+* ```DEBUG``` - Trace messages will be filtered
+* ```INFO``` - Trace and Debug messages will be filtered
+* ```WARN``` - Info and above messages will be filtered
+* ```ERROR``` - Only error messages will be used
+
+All loggers are by default centralized buffered to defer log-messages until it is known what level of output the user wants.
+That means that the non-buffering mode needs to be activated. This can be done by calling only once:
+```javascript
+log.flush();
+```
+
+---
+
 ##API-Documentation
 
 Generate the documentation with following command:
@@ -598,10 +649,12 @@ The following third-party libraries are used by this module:
 * coveralls: https://github.com/cainus/node-coveralls
 * istanbul: https://github.com/gotwarlost/istanbul
 * mocha: https://github.com/visionmedia/mocha
+* sinon: http://sinonjs.org
+* sinon-chai: https://github.com/domenic/sinon-chai
 * yuidocjs: https://github.com/yui/yuidoc
 
 ##License
 
 The MIT License
 
-Copyright 2014 Yahoo Inc.
+Copyright 2014-2015 Yahoo Inc.

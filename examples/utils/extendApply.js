@@ -1,23 +1,19 @@
-// Copyright 2014, Yahoo! Inc.
+// Copyright 2014-2015, Yahoo! Inc.
 // Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
 
 var utils = require('../../').utils;
 var result;
 
 var obj1 = {
-    "name": "obj1",
-    "entry1": 23,
-    "entry2": 46
+	"name": "obj1", "entry1": 23, "entry2": 46
 };
 
 var obj2 = {
-    "name": "obj2",
-    "entry2": 78,
-    "entry3": 2
+	"name": "obj2", "entry2": 78, "entry3": 2
 };
 
 var srcObj = {
-    "entry0": 0
+	"entry0": 0
 };
 
 
@@ -30,7 +26,7 @@ console.log(srcObj);
 // Extent with apply-function
 console.log("Extend with function:");
 result = utils.extendApply({}, [obj1, obj2], function (value) {
-    return value + 1;
+	return value + 1;
 });
 console.log(result);
 
@@ -39,10 +35,9 @@ console.log(result);
 console.log("Extend logging:");
 result = utils.extendApply({}, [obj1, obj2], function (srcValue, dstValue, options) {
 
-    console.log("The value '" + srcValue + "' with key '" + options.key + "' from object with name '" +
-        options.currentObject.name +  "' was '" + dstValue + "' in the original object");
+	console.log("The value '" + srcValue + "' with key '" + options.key + "' from object with name '" + options.currentObject.name + "' was '" + dstValue + "' in the original object");
 
-    return options.objectIndex + ':' + options.valueIndex;
+	return options.objectIndex + ':' + options.valueIndex;
 });
 console.log(result);
 
