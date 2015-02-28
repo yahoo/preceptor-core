@@ -21,7 +21,7 @@ Shared library for the preceptor test runner and aggregator.
     * [Base-Object](#base-object)
         * [Static Properties](#static-properties---defined-on-the-constructor)
         * [Dynamic Properties](#dynamic-properties---defined-on-this-or-prototype)
-    * [Utils](#utils)
+    * [utils](#utils)
         * [extendApply](#extendapply)
         * [deepExtend](#deepextend)
         * [combine](#combine)
@@ -60,6 +60,7 @@ The module exposes two objects:
 
 * ```Base``` - A base object that every preceptor object should inherit from. See below for more information.
 * ```utils``` - Frequently used utility functions
+* ```log``` - Centralized log and logger management
 
 
 ###Base-Object
@@ -297,7 +298,7 @@ Dog instance [Dog::dog:Zeus(instance2)]
 
 ---
 
-##Utils
+##utils
 
 Utils exposes the following utility functions:
 
@@ -575,8 +576,8 @@ var configuration = utils.require('config', {});
 The ```log``` object exposes a centralize logging interface including buffering for deferred logging.
 
 This object works with two different type of objects:
-* log - The singleton managing multiple loggers
-* logger - Instance for a specific logger
+* ```log``` - The singleton managing multiple loggers
+* ```logger``` - Instance for a specific logger
 
 A new logger can be created by calling the ```getLogger``` method on the ```log``` object:
 ```javascript
@@ -591,7 +592,7 @@ logger.debug('Debug message: ', { message: 'something something' });
 
 There are a couple of log-types available:
 * ```logger.trace``` - Trace log entries that could give much more detail on steps through the code
-* ```logger.debug``` - Debug values that might be helpful for debugging problems without being too overwhelming like ```trace```
+* ```logger.debug``` - Debug values that might be helpful for debugging problems without being too overwhelming like ```logger.trace```
 * ```logger.info``` - Info messages that is probably helpful for a user to understand what decisions were made
 * ```logger.warn``` - Warning message for missing configuration or other behavior that might be unexpected to the user
 * ```logger.error``` - Errors during execution

@@ -32,7 +32,7 @@ describe('log', function () {
 
 		it('should log', function () {
 			var logger = log.getLogger(__filename);
-			logger.error('Error message', { test: 23 });
+			logger.info('Info message', { test: 23 });
 		});
 
 		it('should flush', function () {
