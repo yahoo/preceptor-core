@@ -63,7 +63,7 @@
 </ul>
 </li>
 <li>
-<a href="#utils">Utils</a>
+<a href="#utils">utils</a>
 
 <ul>
 <li><a href="#extendapply">extendApply</a></li>
@@ -72,6 +72,7 @@
 <li><a href="#superwrapper">superWrapper</a></li>
 </ul>
 </li>
+<li><a href="#log">log</a></li>
 </ul>
 </li>
 <li><a href="#api-documentation">API-Documentation</a></li>
@@ -109,6 +110,8 @@
 <code>Base</code> - A base object that every preceptor object should inherit from. See below for more information.</li>
 <li>
 <code>utils</code> - Frequently used utility functions</li>
+<li>
+<code>log</code> - Centralized log and logger management</li>
 </ul>
 
 <h3>
@@ -377,7 +380,7 @@ Dog instance [Dog::dog:Zeus(instance2)]</pre></div>
 <hr>
 
 <h2>
-<a id="utils" class="anchor" href="#utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>Utils</h2>
+<a id="utils" class="anchor" href="#utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>utils</h2>
 
 <p>Utils exposes the following utility functions:</p>
 
@@ -699,6 +702,78 @@ Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and
 <hr>
 
 <h2>
+<a id="log" class="anchor" href="#log" aria-hidden="true"><span class="octicon octicon-link"></span></a>log</h2>
+
+<p>The <code>log</code> object exposes a centralize logging interface including buffering for deferred logging.</p>
+
+<p>This object works with two different type of objects:</p>
+
+<ul>
+<li>
+<code>log</code> - The singleton managing multiple loggers</li>
+<li>
+<code>logger</code> - Instance for a specific logger</li>
+</ul>
+
+<p>A new logger can be created by calling the <code>getLogger</code> method on the <code>log</code> object:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> logger <span class="pl-k">=</span> log.getLogger(<span class="pl-sv">__filename</span>);</pre></div>
+
+<p>For each logger, a filename/identifier can be supplied that will be exported with each log trigger.</p>
+
+<p>When having a logger, then log entries can be triggered, including objects:</p>
+
+<div class="highlight highlight-javascript"><pre>logger.debug(<span class="pl-s1"><span class="pl-pds">'</span>Debug message: <span class="pl-pds">'</span></span>, { message<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>something something<span class="pl-pds">'</span></span> });</pre></div>
+
+<p>There are a couple of log-types available:</p>
+
+<ul>
+<li>
+<code>logger.trace</code> - Trace log entries that could give much more detail on steps through the code</li>
+<li>
+<code>logger.debug</code> - Debug values that might be helpful for debugging problems without being too overwhelming like <code>logger.trace</code>
+</li>
+<li>
+<code>logger.info</code> - Info messages that is probably helpful for a user to understand what decisions were made</li>
+<li>
+<code>logger.warn</code> - Warning message for missing configuration or other behavior that might be unexpected to the user</li>
+<li>
+<code>logger.error</code> - Errors during execution</li>
+</ul>
+
+<p>These log-types may be filtered depending on the log-level set. The log-levels can be requested and set with the following values:</p>
+
+<div class="highlight highlight-javascript"><pre>log.setLevel(<span class="pl-s1"><span class="pl-pds">'</span>DEBUG<span class="pl-pds">'</span></span>);
+
+log.getLevel() <span class="pl-c">// -&gt; DEBUG</span></pre></div>
+
+<p>The default value is <code>INFO</code>.</p>
+
+<p>Following log-levels are available:</p>
+
+<ul>
+<li>
+<code>ALL</code> - All log-types are used which is an alias for <code>TRACE</code>.</li>
+<li>
+<code>TRACE</code> - Trace messages and all messages with the log-type below will be used.</li>
+<li>
+<code>DEBUG</code> - Trace messages will be filtered</li>
+<li>
+<code>INFO</code> - Trace and Debug messages will be filtered</li>
+<li>
+<code>WARN</code> - Info and above messages will be filtered</li>
+<li>
+<code>ERROR</code> - Only error messages will be used</li>
+</ul>
+
+<p>All loggers are by default centralized buffered to defer log-messages until it is known what level of output the user wants.
+That means that the non-buffering mode needs to be activated. This can be done by calling only once:</p>
+
+<div class="highlight highlight-javascript"><pre>log.flush();</pre></div>
+
+<hr>
+
+<h2>
 <a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>API-Documentation</h2>
 
 <p>Generate the documentation with following command:</p>
@@ -743,6 +818,10 @@ Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and
 </li>
 <li>mocha: <a href="https://github.com/visionmedia/mocha">https://github.com/visionmedia/mocha</a>
 </li>
+<li>sinon: <a href="http://sinonjs.org">http://sinonjs.org</a>
+</li>
+<li>sinon-chai: <a href="https://github.com/domenic/sinon-chai">https://github.com/domenic/sinon-chai</a>
+</li>
 <li>yuidocjs: <a href="https://github.com/yui/yuidoc">https://github.com/yui/yuidoc</a>
 </li>
 </ul>
@@ -752,7 +831,7 @@ Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and
 
 <p>The MIT License</p>
 
-<p>Copyright 2014 Yahoo Inc.</p>
+<p>Copyright 2014-2015 Yahoo Inc.</p>
       </section>
     </div>
 
