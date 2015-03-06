@@ -5,8 +5,8 @@ Shared library for the preceptor test runner and aggregator.
 
 
 [![Build Status](https://img.shields.io/travis/yahoo/preceptor-core.svg)](http://travis-ci.org/yahoo/preceptor-core)
-[![Code Climate Grade](https://img.shields.io/codeclimate/github/yahoo/preceptor-core.svg)](https://codeclimate.com/github/yahoo/preceptor-core)
 [![Coveralls Coverage](https://img.shields.io/coveralls/yahoo/preceptor-core.svg)](https://coveralls.io/r/yahoo/preceptor-core)
+[![Code Climate Grade](https://img.shields.io/codeclimate/github/yahoo/preceptor-core.svg)](https://codeclimate.com/github/yahoo/preceptor-core)
 
 [![NPM version](https://badge.fury.io/js/preceptor-core.svg)](https://www.npmjs.com/package/preceptor-core)
 [![NPM License](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/preceptor-core)
