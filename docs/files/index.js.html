@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.6</em>
+            <em>API Docs for: 0.10.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -43,7 +43,7 @@
             
                 <li><a href="../classes/Base.html">Base</a></li>
             
-                <li><a href="../classes/Logger.html">Logger</a></li>
+                <li><a href="../classes/log.html">log</a></li>
             
                 <li><a href="../classes/utils.html">utils</a></li>
             
@@ -90,44 +90,45 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-// Copyright 2014, Yahoo! Inc.
+// Copyright 2014-2015, Yahoo! Inc.
 // Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
 
 module.exports = {
 
-    /**
-     * Base class
-     *
-     * @property Base
-     * @type {Base}
-     */
-    Base: require(&#x27;./lib/base&#x27;),
+	/**
+	 * Base class
+	 *
+	 * @property Base
+	 * @type {Base}
+	 */
+	Base: require(&#x27;./lib/base&#x27;),
 
-    /**
-     * Utils functions
-     *
-     * @property utils
-     * @type {object}
-     */
-    utils: require(&#x27;./lib/utils&#x27;),
+	/**
+	 * Utils functions
+	 *
+	 * @property utils
+	 * @type {object}
+	 */
+	utils: require(&#x27;./lib/utils&#x27;),
 
-    /**
-     * Logger
-     *
-     * @property log
-     * @type {object}
-     */
-    log: require(&#x27;./lib/log&#x27;),
+	/**
+	 * Logger
+	 *
+	 * @property log
+	 * @type {object}
+	 */
+	log: require(&#x27;./lib/log&#x27;),
 
 
-    /**
-     * Version
-     *
-     * @property version
-     * @type {string}
-     */
-    version: require(&#x27;./package.json&#x27;).version
+	/**
+	 * Version
+	 *
+	 * @property version
+	 * @type {string}
+	 */
+	version: require(&#x27;./package.json&#x27;).version
 };
+
     </pre>
 </div>
 

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.6</em>
+            <em>API Docs for: 0.10.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -43,7 +43,7 @@
             
                 <li><a href="../classes/Base.html">Base</a></li>
             
-                <li><a href="../classes/Logger.html">Logger</a></li>
+                <li><a href="../classes/log.html">log</a></li>
             
                 <li><a href="../classes/utils.html">utils</a></li>
             
@@ -97,12 +97,12 @@ var log4js = require(&#x27;log4js&#x27;);
 var path = require(&#x27;path&#x27;);
 var _ = require(&#x27;underscore&#x27;);
 
-var _level = null;
+var _level = &#x27;INFO&#x27;;
 
 var _buffered = true;
 var _buffer = [];
 
-log4js.setGlobalLogLevel(&#x27;INFO&#x27;);
+log4js.setGlobalLogLevel(_level);
 
 /**
  * Arguments logger with custom functionality
@@ -122,7 +122,7 @@ var _argumentLogger = function (logger) {
 			logger[item] = function () {
 				var args = Array.prototype.slice.call(arguments);
 
-				for(var i = 0; i &lt; args.length; i++) {
+				for (var i = 0; i &lt; args.length; i++) {
 					if (_.isObject(args[i])) {
 						args[i] = JSON.stringify(args[i], null, 4);
 					}
@@ -130,9 +130,7 @@ var _argumentLogger = function (logger) {
 
 				if (_buffered) {
 					_buffer.push({
-						logger: logger,
-						level: item,
-						args: args
+						logger: logger, level: item, args: args
 					});
 				} else {
 					oldFunction.apply(logger, args);
@@ -149,7 +147,7 @@ var _argumentLogger = function (logger) {
 /**
  * Logger object
  *
- * @class Logger
+ * @class log
  *
  * @property log
  * @property trace
@@ -162,7 +160,7 @@ var _argumentLogger = function (logger) {
 /**
  * Logger management object
  *
- * @static log
+ * @class log
  * @type {object}
  */
 var log = {
@@ -188,18 +186,26 @@ var log = {
 		log4js.setGlobalLogLevel(_level);
 	},
 
+	/**
+	 * Get internal logger
+	 *
+	 * @method getInternalLogger
+	 * @private
+	 * @return {*}
+	 */
+	_getInternalLogger: function () {
+		return log4js;
+	},
 
 	/**
 	 * Return logger for a specific file
 	 *
-     * @method getLogger
-	 * @param {string} filename
+	 * @method getLogger
+	 * @param {string} identifier
 	 * @return {Logger}
 	 */
-	getLogger: function (filename) {
-		var logPath = filename;
-		logPath = logPath.substr(__dirname.length + path.sep.length);
-		return _argumentLogger(log4js.getLogger(logPath));
+	getLogger: function (identifier) {
+		return _argumentLogger(log4js.getLogger(identifier));
 	},
 
 	/**

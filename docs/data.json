@@ -2,7 +2,7 @@
     "project": {
         "name": "preceptor-core",
         "description": "Core components for the preceptor test runner and aggregator",
-        "version": "0.9.6"
+        "version": "0.10.0"
     },
     "files": {
         "lib/base.js": {
@@ -18,7 +18,7 @@
             "name": "lib/log.js",
             "modules": {},
             "classes": {
-                "Logger": 1
+                "log": 1
             },
             "fors": {},
             "namespaces": {}
@@ -57,18 +57,19 @@
             "itemtype": "property",
             "type": "String"
         },
-        "Logger": {
-            "name": "Logger",
-            "shortname": "Logger",
+        "log": {
+            "name": "log",
+            "shortname": "log",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/log.js",
-            "line": 57,
-            "description": "Logger object",
-            "itemtype": "property"
+            "line": 68,
+            "description": "Logger management object",
+            "itemtype": "property",
+            "type": "{object}"
         },
         "utils": {
             "name": "utils",
@@ -156,7 +157,7 @@
         },
         {
             "file": "lib/base.js",
-            "line": 108,
+            "line": 106,
             "description": "Static class conversion to string",
             "itemtype": "method",
             "name": "toString",
@@ -186,19 +187,11 @@
             },
             "access": "private",
             "tagname": "",
-            "class": "Logger"
+            "class": "log"
         },
         {
             "file": "lib/log.js",
-            "line": 70,
-            "description": "Logger management object",
-            "static": "log",
-            "type": "{object}",
-            "class": "Logger"
-        },
-        {
-            "file": "lib/log.js",
-            "line": 78,
+            "line": 76,
             "description": "Get logging level",
             "itemtype": "method",
             "name": "getLevel",
@@ -206,11 +199,11 @@
                 "description": "",
                 "type": "String"
             },
-            "class": "Logger"
+            "class": "log"
         },
         {
             "file": "lib/log.js",
-            "line": 88,
+            "line": 86,
             "description": "Set logging level",
             "itemtype": "method",
             "name": "setLevel",
@@ -221,17 +214,31 @@
                     "type": "String"
                 }
             ],
-            "class": "Logger"
+            "class": "log"
         },
         {
             "file": "lib/log.js",
-            "line": 100,
+            "line": 97,
+            "description": "Get internal logger",
+            "itemtype": "method",
+            "name": "getInternalLogger",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "class": "log"
+        },
+        {
+            "file": "lib/log.js",
+            "line": 108,
             "description": "Return logger for a specific file",
             "itemtype": "method",
             "name": "getLogger",
             "params": [
                 {
-                    "name": "filename",
+                    "name": "identifier",
                     "description": "",
                     "type": "String"
                 }
@@ -240,15 +247,15 @@
                 "description": "",
                 "type": "Logger"
             },
-            "class": "Logger"
+            "class": "log"
         },
         {
             "file": "lib/log.js",
-            "line": 113,
+            "line": 119,
             "description": "Flushes all buffered entries",
             "itemtype": "method",
             "name": "flush",
-            "class": "Logger"
+            "class": "log"
         },
         {
             "file": "lib/utils.js",
@@ -282,7 +289,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 38,
+            "line": 35,
             "description": "Deep-extend of an object",
             "itemtype": "method",
             "name": "deepExtend",
@@ -321,7 +328,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 82,
+            "line": 79,
             "description": "Wraps a function into another function that sets another function as the __super() function\nThis is used to wrap every single function of an object so that one can call\n\nthis.__super();\n\nto call its parent function that was overwritten.",
             "itemtype": "method",
             "name": "superWrapper",
@@ -345,7 +352,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 119,
+            "line": 116,
             "description": "Combines multiple strings into one, making sure that the glue-string doesn't get applied when not required",
             "itemtype": "method",
             "name": "combine",
@@ -369,7 +376,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 143,
+            "line": 140,
             "description": "Turns a string into a filesystem safe filename",
             "itemtype": "method",
             "name": "fileNameSafe",
@@ -388,7 +395,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 154,
+            "line": 151,
             "description": "Safely requires a module",
             "itemtype": "method",
             "name": "require",
@@ -448,10 +455,5 @@
             "class": ""
         }
     ],
-    "warnings": [
-        {
-            "message": "Missing item type\nLogger management object",
-            "line": " lib/log.js:70"
-        }
-    ]
+    "warnings": []
 }

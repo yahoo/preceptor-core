@@ -393,10 +393,7 @@
 175
 176
 177
-178
-179
-180
-181</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+178</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -422,9 +419,6 @@
 <span class="cline-any cline-yes">19</span>
 <span class="cline-any cline-yes">17</span>
 <span class="cline-any cline-yes">44</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -576,7 +570,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Copyright 2014, Yahoo! Inc.
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Copyright 2014-2015, Yahoo! Inc.
 // Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
 &nbsp;
 var _ = require('underscore');
@@ -595,22 +589,19 @@ var _ = require('underscore');
  * @return {object} Destination object
  */
 var extendApply = function (obj, objects, fn) {
-    fn = fn || function (item /* , previousItem, obj, objectIndex, valueIndex */) {
-        return item;
-    };
-    objects.forEach(function (currentObject, objectIndex) {
-        if (currentObject) {
-            _.keys(currentObject).forEach(function (key, valueIndex) {
-                obj[key] = fn(currentObject[key], obj[key], {
-                    key: key,
-                    currentObject: currentObject,
-                    objectIndex: objectIndex,
-                    valueIndex: valueIndex
-                });
-            });
-        }
-    });
-    return obj;
+	fn = fn || function (item /* , previousItem, obj, objectIndex, valueIndex */) {
+		return item;
+	};
+	objects.forEach(function (currentObject, objectIndex) {
+		if (currentObject) {
+			_.keys(currentObject).forEach(function (key, valueIndex) {
+				obj[key] = fn(currentObject[key], obj[key], {
+					key: key, currentObject: currentObject, objectIndex: objectIndex, valueIndex: valueIndex
+				});
+			});
+		}
+	});
+	return obj;
 };
 &nbsp;
 /**
@@ -624,37 +615,37 @@ var extendApply = function (obj, objects, fn) {
  * @return {object}
  */
 var deepExtend = function (obj, objects, options) {
-    options = options || {};
-    objects.forEach(function (currentObject) {
-        if (currentObject) {
-            _.keys(currentObject).forEach(function (key) {
-                var i, len;
-                if ((_.isArray(obj[key]) || !obj[key]) &amp;&amp; _.isArray(currentObject[key])) {
-                    if (options.replace) {
-                        obj[key] = deepExtend(obj[key] || [], [currentObject[key]]);
-                    } else {
-                        obj[key] = (obj[key] || []);
-                        for(i = 0, len = currentObject[key].length; i &lt; len; i++) {
-                            if (_.isArray(currentObject[key][i])) {
-                                obj[key].push(deepExtend([], [currentObject[key][i]]));
-                            } else if (_.isObject(currentObject[key][i])) {
-                                obj[key].push(deepExtend({}, [currentObject[key][i]]));
-                            } else {
-                                obj[key].push(currentObject[key][i]);
-                            }
-                        }
-                    }
-                } else if (_.isFunction(currentObject[key])) {
-                    obj[key] = currentObject[key];
-                } else if ((_.isObject(obj[key]) || !obj[key]) &amp;&amp; _.isObject(currentObject[key])) {
-                    obj[key] = deepExtend(obj[key] || {}, [currentObject[key]]);
-                } else {
-                    obj[key] = currentObject[key];
-                }
-            });
-        }
-    });
-    return obj;
+	options = options || {};
+	objects.forEach(function (currentObject) {
+		if (currentObject) {
+			_.keys(currentObject).forEach(function (key) {
+				var i, len;
+				if ((_.isArray(obj[key]) || !obj[key]) &amp;&amp; _.isArray(currentObject[key])) {
+					if (options.replace) {
+						obj[key] = deepExtend(obj[key] || [], [currentObject[key]]);
+					} else {
+						obj[key] = (obj[key] || []);
+						for (i = 0, len = currentObject[key].length; i &lt; len; i++) {
+							if (_.isArray(currentObject[key][i])) {
+								obj[key].push(deepExtend([], [currentObject[key][i]]));
+							} else if (_.isObject(currentObject[key][i])) {
+								obj[key].push(deepExtend({}, [currentObject[key][i]]));
+							} else {
+								obj[key].push(currentObject[key][i]);
+							}
+						}
+					}
+				} else if (_.isFunction(currentObject[key])) {
+					obj[key] = currentObject[key];
+				} else if ((_.isObject(obj[key]) || !obj[key]) &amp;&amp; _.isObject(currentObject[key])) {
+					obj[key] = deepExtend(obj[key] || {}, [currentObject[key]]);
+				} else {
+					obj[key] = currentObject[key];
+				}
+			});
+		}
+	});
+	return obj;
 };
 &nbsp;
 /**
@@ -672,26 +663,26 @@ var deepExtend = function (obj, objects, options) {
  */
 var superWrapper = function (currentItem, previousItem) {
 &nbsp;
-    if (_.isFunction(currentItem) &amp;&amp; (!previousItem || _.isFunction(previousItem))) {
+	if (_.isFunction(currentItem) &amp;&amp; (!previousItem || _.isFunction(previousItem))) {
 &nbsp;
-        previousItem = previousItem || function () {
-        };
+		previousItem = previousItem || function () {
+		};
 &nbsp;
-        return function () {
-            var result, self = this, oldSuper = self.__super;
+		return function () {
+			var result, self = this, oldSuper = self.__super;
 &nbsp;
-            self.__super = function () {
-                return previousItem.apply(self, arguments);
-            };
-            result = currentItem.apply(self, arguments);
-            self.__super = oldSuper;
+			self.__super = function () {
+				return previousItem.apply(self, arguments);
+			};
+			result = currentItem.apply(self, arguments);
+			self.__super = oldSuper;
 &nbsp;
-            return result;
-        };
+			return result;
+		};
 &nbsp;
-    } else {
-        return currentItem;
-    }
+	} else {
+		return currentItem;
+	}
 };
 &nbsp;
 /**
@@ -703,19 +694,19 @@ var superWrapper = function (currentItem, previousItem) {
  * @return {string}
  */
 var combine = function (glue, str1 /*, ... */) {
-    var args = Array.prototype.slice.call(arguments, 2), result = str1;
+	var args = Array.prototype.slice.call(arguments, 2), result = str1;
 &nbsp;
-    args.forEach(function (arg) {
-        if ((result.substr(-1) === glue) &amp;&amp; (arg.substr(0, 1) === glue)) {
-            result += arg.substr(1);
-        } else if ((result.substr(-1) === glue) || (arg.substr(0, 1) === glue)) {
-            result += arg;
-        } else {
-            result += glue + arg;
-        }
-    });
+	args.forEach(function (arg) {
+		if ((result.substr(-1) === glue) &amp;&amp; (arg.substr(0, 1) === glue)) {
+			result += arg.substr(1);
+		} else if ((result.substr(-1) === glue) || (arg.substr(0, 1) === glue)) {
+			result += arg;
+		} else {
+			result += glue + arg;
+		}
+	});
 &nbsp;
-    return result;
+	return result;
 };
 &nbsp;
 /**
@@ -726,7 +717,7 @@ var combine = function (glue, str1 /*, ... */) {
  * @return {string}
  */
 var fileNameSafe = function (str) {
-    return str.replace(/[^a-zA-Z\d]/g, '-');
+	return str.replace(/[^a-zA-Z\d]/g, '-');
 };
 &nbsp;
 /**
@@ -738,30 +729,30 @@ var fileNameSafe = function (str) {
  * @return {*}
  */
 var requir = function (module, defaultValue) {
-    try {
-        return require(module);
-    } catch (err) {
-        if (defaultValue === undefined) {
-            throw new Error("Cannot find module: " + module);
-        }
-        return defaultValue;
-    }
+	try {
+		return require(module);
+	} catch (err) {
+		if (defaultValue === undefined) {
+			throw new Error("Cannot find module: " + module);
+		}
+		return defaultValue;
+	}
 };
 &nbsp;
 module.exports = {
-    superWrapper: superWrapper,
-    extendApply: extendApply,
-    deepExtend: deepExtend,
-    combine: combine,
-    fileNameSafe: fileNameSafe,
-    require: requir
+	superWrapper: superWrapper,
+	extendApply: extendApply,
+	deepExtend: deepExtend,
+	combine: combine,
+	fileNameSafe: fileNameSafe,
+	require: requir
 };
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Feb 22 2015 01:10:31 GMT-0800 (PST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Mar 29 2015 19:23:50 GMT-0700 (PDT)</div>
 </div>
 
 <script src="../../prettify.js"></script>
