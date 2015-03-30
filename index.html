@@ -1,49 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Preceptor-core by yahoo</title>
+    <meta name="description" content="Preceptor-core : Shared library for the preceptor test-runner and aggregator">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Preceptor-core</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Preceptor-core</h1>
-        <p class="header">Shared library for the preceptor test-runner and aggregator</p>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/yahoo/preceptor-core/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/yahoo/preceptor-core/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/yahoo/preceptor-core">View On GitHub</a></li>
-        </ul>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/yahoo/preceptor-core">View on GitHub</a>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/yahoo">yahoo</a></p>
+          <h1 id="project_title">Preceptor-core</h1>
+          <h2 id="project_tagline">Shared library for the preceptor test-runner and aggregator</h2>
 
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/yahoo/preceptor-core/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/yahoo/preceptor-core/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-      </header>
-      <section>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a id="preceptor-core" class="anchor" href="#preceptor-core" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preceptor-Core</h1>
 
 <p>Shared library for the preceptor test runner and aggregator.</p>
 
-<p><a href="http://travis-ci.org/yahoo/preceptor-core"><img src="https://secure.travis-ci.org/yahoo/preceptor-core.png" alt="Build Status"></a>
-<a href="http://badge.fury.io/js/preceptor-core"><img src="https://badge.fury.io/js/preceptor-core.svg" alt="npm version"></a></p>
+<p><a href="http://travis-ci.org/yahoo/preceptor-core"><img src="https://img.shields.io/travis/yahoo/preceptor-core.svg" alt="Build Status"></a>
+<a href="https://coveralls.io/r/yahoo/preceptor-core"><img src="https://img.shields.io/coveralls/yahoo/preceptor-core.svg" alt="Coveralls Coverage"></a>
+<a href="https://codeclimate.com/github/yahoo/preceptor-core"><img src="https://img.shields.io/codeclimate/github/yahoo/preceptor-core.svg" alt="Code Climate Grade"></a></p>
 
-<p><a href="https://nodei.co/npm/preceptor-core/"><img src="https://nodei.co/npm/preceptor-core.png?downloads=true&amp;stars=true" alt="NPM"></a>
-<a href="https://nodei.co/npm/preceptor-core/"><img src="https://nodei.co/npm-dl/preceptor-core.png?months=3&amp;height=2" alt="NPM"></a></p>
+<p><a href="https://www.npmjs.com/package/preceptor-core"><img src="https://badge.fury.io/js/preceptor-core.svg" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/preceptor-core"><img src="https://img.shields.io/npm/l/preceptor-core.svg" alt="NPM License"></a></p>
 
-<p><a href="http://yahoo.github.io/preceptor-core/docs/">API-Documentation</a></p>
+<p><a href="https://www.npmjs.com/package/preceptor-core"><img src="https://nodei.co/npm/preceptor-core.png?downloads=true&amp;stars=true" alt="NPM"></a>
+<a href="https://www.npmjs.com/package/preceptor-core"><img src="https://nodei.co/npm-dl/preceptor-core.png?months=3&amp;height=2" alt="NPM"></a></p>
 
-<p><a href="http://yahoo.github.io/preceptor-core/coverage/lcov-report/">Coverage Report</a></p>
+<p><a href="http://yahoo.github.io/preceptor-core/coverage/lcov-report/"><img src="https://img.shields.io/badge/Coverage_Report-Available-blue.svg" alt="Coverage Report"></a>
+<a href="http://yahoo.github.io/preceptor-core/docs/"><img src="https://img.shields.io/badge/API_Documentation-Available-blue.svg" alt="API Documentation"></a></p>
+
+<p><a href="https://gitter.im/preceptorjs/support"><img src="https://img.shields.io/badge/Support-Gitter_IM-yellow.svg" alt="Gitter Support"></a></p>
 
 <p><strong>Table of Contents</strong></p>
 
@@ -97,7 +103,7 @@
 
 <p>Require the module in your source-code:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> core <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>);</pre></div>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> core <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>);</pre></div>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
@@ -189,7 +195,7 @@ Overwrite this value in instances to help to help identifying instances during r
 <h4>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Base <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).Base;
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> Base <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).Base;
 
 <span class="pl-c">/**</span>
 <span class="pl-c"> * @class Pet</span>
@@ -197,7 +203,7 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c"> * @properties {string} _type Type of pet</span>
 <span class="pl-c"> * @properties {string} _name Name of pet</span>
 <span class="pl-c"> */</span>
-<span class="pl-s">var</span> Pet <span class="pl-k">=</span> Base.extend(
+<span class="pl-k">var</span> Pet <span class="pl-k">=</span> Base.extend(
 
     <span class="pl-c">/**</span>
 <span class="pl-c">     * Constructor of Pet</span>
@@ -206,7 +212,7 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c">     * @param {string} type Type of pet</span>
 <span class="pl-c">     * @param {string} name Name of pet</span>
 <span class="pl-c">     */</span>
-     <span class="pl-st">function</span> (<span class="pl-vpf">type</span>, <span class="pl-vpf">name</span>) {
+     <span class="pl-k">function</span> (<span class="pl-smi">type</span>, <span class="pl-smi">name</span>) {
 
         <span class="pl-c">// Call the parent constructor</span>
         <span class="pl-v">this</span>.__super();
@@ -216,7 +222,7 @@ Overwrite this value in instances to help to help identifying instances during r
         <span class="pl-v">this</span>._name <span class="pl-k">=</span> name;
 
         <span class="pl-c">// Add instance descriptor</span>
-        <span class="pl-v">this</span>.NAME <span class="pl-k">=</span> type <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span>:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> name;
+        <span class="pl-v">this</span>.NAME <span class="pl-k">=</span> type <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> name;
 
         <span class="pl-c">// Define here all dynamic values, values that should not be shared between multiple instances of "Pet".</span>
     },
@@ -230,10 +236,10 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c">         * @param {string} sound</span>
 <span class="pl-c">         * @method makeSound</span>
 <span class="pl-c">         */</span>
-        <span class="pl-en">makeSound</span>: <span class="pl-st">function</span> (<span class="pl-vpf">sound</span>) {
-            <span class="pl-v">this</span>.emit(<span class="pl-s1"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-v">this</span>.getName(), sound);
+        <span class="pl-en">makeSound</span>: <span class="pl-k">function</span> (<span class="pl-smi">sound</span>) {
+            <span class="pl-v">this</span>.emit(<span class="pl-s"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-v">this</span>.getName(), sound);
 
-            <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-v">this</span>.getName() <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span> says: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
+            <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-v">this</span>.getName() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> says: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
         },
 
         <span class="pl-c">/**</span>
@@ -241,7 +247,7 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c">         *</span>
 <span class="pl-c">         * @return {string}</span>
 <span class="pl-c">         */</span>
-        <span class="pl-en">getName</span>: <span class="pl-st">function</span> () {
+        <span class="pl-en">getName</span>: <span class="pl-k">function</span> () {
             <span class="pl-k">return</span> <span class="pl-v">this</span>._name;
         }
 
@@ -260,7 +266,7 @@ Overwrite this value in instances to help to help identifying instances during r
         <span class="pl-c">/**</span>
 <span class="pl-c">         * @type {string}</span>
 <span class="pl-c">         */</span>
-        TYPE<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Pet<span class="pl-pds">"</span></span>
+        TYPE<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Pet<span class="pl-pds">"</span></span>
 
         <span class="pl-c">// ...</span>
         <span class="pl-c">// Any other constructor functions and values.</span>
@@ -273,7 +279,7 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c"> * @class Cat</span>
 <span class="pl-c"> * @extends Pet</span>
 <span class="pl-c"> */</span>
-<span class="pl-s">var</span> Cat <span class="pl-k">=</span> Pet.extend(
+<span class="pl-k">var</span> Cat <span class="pl-k">=</span> Pet.extend(
 
     <span class="pl-c">/**</span>
 <span class="pl-c">     * Constructor of Cat</span>
@@ -281,8 +287,8 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c">     * @constructor</span>
 <span class="pl-c">     * @param {string} name Name of pet</span>
 <span class="pl-c">     */</span>
-    <span class="pl-st">function</span> (<span class="pl-vpf">name</span>) {
-        <span class="pl-v">this</span>.__super(<span class="pl-s1"><span class="pl-pds">"</span>cat<span class="pl-pds">"</span></span>, name);
+    <span class="pl-k">function</span> (<span class="pl-smi">name</span>) {
+        <span class="pl-v">this</span>.__super(<span class="pl-s"><span class="pl-pds">"</span>cat<span class="pl-pds">"</span></span>, name);
     },
 
     <span class="pl-c">/** @lends Cat.prototype */</span>
@@ -292,8 +298,8 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c">         *</span>
 <span class="pl-c">         * @method makeSound</span>
 <span class="pl-c">         */</span>
-        <span class="pl-en">makeSound</span>: <span class="pl-st">function</span> () {
-            <span class="pl-v">this</span>.__super(<span class="pl-s1"><span class="pl-pds">"</span>miau<span class="pl-pds">"</span></span>);
+        <span class="pl-en">makeSound</span>: <span class="pl-k">function</span> () {
+            <span class="pl-v">this</span>.__super(<span class="pl-s"><span class="pl-pds">"</span>miau<span class="pl-pds">"</span></span>);
         }
     },
 
@@ -302,7 +308,7 @@ Overwrite this value in instances to help to help identifying instances during r
         <span class="pl-c">/**</span>
 <span class="pl-c">         * @type {string}</span>
 <span class="pl-c">         */</span>
-        TYPE<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span>
+        TYPE<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span>
     }
 );
 
@@ -310,7 +316,7 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c"> * @class Dog</span>
 <span class="pl-c"> * @extends Pet</span>
 <span class="pl-c"> */</span>
-<span class="pl-s">var</span> Dog <span class="pl-k">=</span> Pet.extend(
+<span class="pl-k">var</span> Dog <span class="pl-k">=</span> Pet.extend(
 
     <span class="pl-c">/**</span>
 <span class="pl-c">     * Constructor of Dog</span>
@@ -318,8 +324,8 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c">     * @constructor</span>
 <span class="pl-c">     * @param {string} name Name of pet</span>
 <span class="pl-c">     */</span>
-        <span class="pl-st">function</span> (<span class="pl-vpf">name</span>) {
-        <span class="pl-v">this</span>.__super(<span class="pl-s1"><span class="pl-pds">"</span>dog<span class="pl-pds">"</span></span>, name);
+        <span class="pl-k">function</span> (<span class="pl-smi">name</span>) {
+        <span class="pl-v">this</span>.__super(<span class="pl-s"><span class="pl-pds">"</span>dog<span class="pl-pds">"</span></span>, name);
     },
 
     <span class="pl-c">/** @lends Dog.prototype */</span>
@@ -329,8 +335,8 @@ Overwrite this value in instances to help to help identifying instances during r
 <span class="pl-c">         *</span>
 <span class="pl-c">         * @method makeSound</span>
 <span class="pl-c">         */</span>
-        <span class="pl-en">makeSound</span>: <span class="pl-st">function</span> () {
-            <span class="pl-v">this</span>.__super(<span class="pl-s1"><span class="pl-pds">"</span>barf<span class="pl-pds">"</span></span>);
+        <span class="pl-en">makeSound</span>: <span class="pl-k">function</span> () {
+            <span class="pl-v">this</span>.__super(<span class="pl-s"><span class="pl-pds">"</span>barf<span class="pl-pds">"</span></span>);
         }
     },
 
@@ -339,19 +345,19 @@ Overwrite this value in instances to help to help identifying instances during r
         <span class="pl-c">/**</span>
 <span class="pl-c">         * @type {string}</span>
 <span class="pl-c">         */</span>
-        TYPE<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Dog<span class="pl-pds">"</span></span>
+        TYPE<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Dog<span class="pl-pds">"</span></span>
     }
 );
 
-<span class="pl-s">var</span> tomTheCat <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Cat</span>(<span class="pl-s1"><span class="pl-pds">"</span>Tom<span class="pl-pds">"</span></span>);
-<span class="pl-s">var</span> zeusTheDog <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Dog</span>(<span class="pl-s1"><span class="pl-pds">"</span>Zeus<span class="pl-pds">"</span></span>);
+<span class="pl-k">var</span> tomTheCat <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Cat</span>(<span class="pl-s"><span class="pl-pds">"</span>Tom<span class="pl-pds">"</span></span>);
+<span class="pl-k">var</span> zeusTheDog <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Dog</span>(<span class="pl-s"><span class="pl-pds">"</span>Zeus<span class="pl-pds">"</span></span>);
 
 <span class="pl-c">// Listen to events</span>
-tomTheCat.on(<span class="pl-s1"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">name</span>, <span class="pl-vpf">sound</span>) {
-    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>The cat said <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
+tomTheCat.on(<span class="pl-s"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">name</span>, <span class="pl-smi">sound</span>) {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>The cat said <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
 });
-zeusTheDog.on(<span class="pl-s1"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">name</span>, <span class="pl-vpf">sound</span>) {
-    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>The dog said <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
+zeusTheDog.on(<span class="pl-s"><span class="pl-pds">'</span>sound<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">name</span>, <span class="pl-smi">sound</span>) {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>The dog said <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sound);
 });
 
 <span class="pl-c">// Make sounds</span>
@@ -359,11 +365,11 @@ tomTheCat.makeSound();
 zeusTheDog.makeSound();
 
 <span class="pl-c">// Print instance identifier</span>
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Cat object: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> Cat.<span class="pl-s3">toString</span>());
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Cat instance<span class="pl-pds">"</span></span>, tomTheCat.<span class="pl-s3">toString</span>());
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Cat object: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> Cat.<span class="pl-c1">toString</span>());
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Cat instance<span class="pl-pds">"</span></span>, tomTheCat.<span class="pl-c1">toString</span>());
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Dog object: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> Dog.<span class="pl-s3">toString</span>());
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Dog instance<span class="pl-pds">"</span></span>, zeusTheDog.<span class="pl-s3">toString</span>());</pre></div>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Dog object: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> Dog.<span class="pl-c1">toString</span>());
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Dog instance<span class="pl-pds">"</span></span>, zeusTheDog.<span class="pl-c1">toString</span>());</pre></div>
 
 <p><em>Output:</em></p>
 
@@ -421,72 +427,72 @@ Dog instance [Dog::dog:Zeus(instance2)]</pre></div>
 <h4>
 <a id="example---simple-extend" class="anchor" href="#example---simple-extend" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Simple extend</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>../../<span class="pl-pds">'</span></span>).utils;
-<span class="pl-s">var</span> result;
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> utils <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>../../<span class="pl-pds">'</span></span>).utils;
+<span class="pl-k">var</span> result;
 
-<span class="pl-s">var</span> obj1 <span class="pl-k">=</span> {
-    <span class="pl-s1"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>obj1<span class="pl-pds">"</span></span>,
-    <span class="pl-s1"><span class="pl-pds">"</span>entry1<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>,
-    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">46</span>
+<span class="pl-k">var</span> obj1 <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>obj1<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>entry1<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">46</span>
 };
 
-<span class="pl-s">var</span> obj2 <span class="pl-k">=</span> {
-    <span class="pl-s1"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>obj2<span class="pl-pds">"</span></span>,
-    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">78</span>,
-    <span class="pl-s1"><span class="pl-pds">"</span>entry3<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>
+<span class="pl-k">var</span> obj2 <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>obj2<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">78</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>entry3<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>
 };
 
-<span class="pl-s">var</span> srcObj <span class="pl-k">=</span> {
-    <span class="pl-s1"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>
+<span class="pl-k">var</span> srcObj <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>
 };
 
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Simple extend:<span class="pl-pds">"</span></span>);
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Simple extend:<span class="pl-pds">"</span></span>);
 utils.extendApply(srcObj, [obj1, obj2]);
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(srcObj);</pre></div>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(srcObj);</pre></div>
 
 <p>Output:</p>
 
 <div class="highlight highlight-shell"><pre>Simple extend:
-{ entry0: 0, name: <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span>, entry1: 23, entry2: 78, entry3: 2 }</pre></div>
+{ entry0: 0, name: <span class="pl-s"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span>, entry1: 23, entry2: 78, entry3: 2 }</pre></div>
 
 <h4>
 <a id="example---extend-with-apply-function" class="anchor" href="#example---extend-with-apply-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Extend with apply function</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Extend with function:<span class="pl-pds">"</span></span>);
-result <span class="pl-k">=</span> utils.extendApply({}, [obj1, obj2], <span class="pl-st">function</span> (<span class="pl-vpf">value</span>) {
+<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Extend with function:<span class="pl-pds">"</span></span>);
+result <span class="pl-k">=</span> utils.extendApply({}, [obj1, obj2], <span class="pl-k">function</span> (<span class="pl-smi">value</span>) {
     <span class="pl-k">return</span> value <span class="pl-k">+</span> <span class="pl-c1">1</span>;
 });
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(result);</pre></div>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(result);</pre></div>
 
 <p>Output:</p>
 
 <div class="highlight highlight-shell"><pre>Extend with function:
-{ name: <span class="pl-s1"><span class="pl-pds">'</span>obj21<span class="pl-pds">'</span></span>, entry1: 24, entry2: 79, entry3: 3 }</pre></div>
+{ name: <span class="pl-s"><span class="pl-pds">'</span>obj21<span class="pl-pds">'</span></span>, entry1: 24, entry2: 79, entry3: 3 }</pre></div>
 
 <h4>
 <a id="example---logging-extend-apply-calls" class="anchor" href="#example---logging-extend-apply-calls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example - Logging extend apply calls</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Extend logging:<span class="pl-pds">"</span></span>);
-result <span class="pl-k">=</span> utils.extendApply({}, [obj1, obj2], <span class="pl-st">function</span> (<span class="pl-vpf">srcValue</span>, <span class="pl-vpf">dstValue</span>, <span class="pl-vpf">options</span>) {
+<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Extend logging:<span class="pl-pds">"</span></span>);
+result <span class="pl-k">=</span> utils.extendApply({}, [obj1, obj2], <span class="pl-k">function</span> (<span class="pl-smi">srcValue</span>, <span class="pl-smi">dstValue</span>, <span class="pl-smi">options</span>) {
 
-    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>The value '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> srcValue <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>' with key '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> options.key <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>' from object with name '<span class="pl-pds">"</span></span> <span class="pl-k">+</span>
-        options.currentObject.<span class="pl-sc">name</span> <span class="pl-k">+</span>  <span class="pl-s1"><span class="pl-pds">"</span>' was '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> dstValue <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>' in the original object<span class="pl-pds">"</span></span>);
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>The value '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> srcValue <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>' with key '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> options.key <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>' from object with name '<span class="pl-pds">"</span></span> <span class="pl-k">+</span>
+        options.currentObject.<span class="pl-c1">name</span> <span class="pl-k">+</span>  <span class="pl-s"><span class="pl-pds">"</span>' was '<span class="pl-pds">"</span></span> <span class="pl-k">+</span> dstValue <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>' in the original object<span class="pl-pds">"</span></span>);
 
-    <span class="pl-k">return</span> options.objectIndex <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span>:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> options.valueIndex;
+    <span class="pl-k">return</span> options.objectIndex <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> options.valueIndex;
 });
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(result);</pre></div>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(result);</pre></div>
 
 <p>Output:</p>
 
 <div class="highlight highlight-shell"><pre>Extend logging:
-The value <span class="pl-s1"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
-The value <span class="pl-s1"><span class="pl-pds">'</span>23<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>entry1<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
-The value <span class="pl-s1"><span class="pl-pds">'</span>46<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>entry2<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
-The value <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>0:0<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
-The value <span class="pl-s1"><span class="pl-pds">'</span>78<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>entry2<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>0:2<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
-The value <span class="pl-s1"><span class="pl-pds">'</span>2<span class="pl-pds">'</span></span> with key <span class="pl-s1"><span class="pl-pds">'</span>entry3<span class="pl-pds">'</span></span> from object with name <span class="pl-s1"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
-{ name: <span class="pl-s1"><span class="pl-pds">'</span>1:0<span class="pl-pds">'</span></span>, entry1: <span class="pl-s1"><span class="pl-pds">'</span>0:1<span class="pl-pds">'</span></span>, entry2: <span class="pl-s1"><span class="pl-pds">'</span>1:1<span class="pl-pds">'</span></span>, entry3: <span class="pl-s1"><span class="pl-pds">'</span>1:2<span class="pl-pds">'</span></span> }</pre></div>
+The value <span class="pl-s"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> with key <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> from object with name <span class="pl-s"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s"><span class="pl-pds">'</span>23<span class="pl-pds">'</span></span> with key <span class="pl-s"><span class="pl-pds">'</span>entry1<span class="pl-pds">'</span></span> from object with name <span class="pl-s"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s"><span class="pl-pds">'</span>46<span class="pl-pds">'</span></span> with key <span class="pl-s"><span class="pl-pds">'</span>entry2<span class="pl-pds">'</span></span> from object with name <span class="pl-s"><span class="pl-pds">'</span>obj1<span class="pl-pds">'</span></span> was <span class="pl-s"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> with key <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> from object with name <span class="pl-s"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s"><span class="pl-pds">'</span>0:0<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s"><span class="pl-pds">'</span>78<span class="pl-pds">'</span></span> with key <span class="pl-s"><span class="pl-pds">'</span>entry2<span class="pl-pds">'</span></span> from object with name <span class="pl-s"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s"><span class="pl-pds">'</span>0:2<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+The value <span class="pl-s"><span class="pl-pds">'</span>2<span class="pl-pds">'</span></span> with key <span class="pl-s"><span class="pl-pds">'</span>entry3<span class="pl-pds">'</span></span> from object with name <span class="pl-s"><span class="pl-pds">'</span>obj2<span class="pl-pds">'</span></span> was <span class="pl-s"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span> <span class="pl-k">in</span> the original object
+{ name: <span class="pl-s"><span class="pl-pds">'</span>1:0<span class="pl-pds">'</span></span>, entry1: <span class="pl-s"><span class="pl-pds">'</span>0:1<span class="pl-pds">'</span></span>, entry2: <span class="pl-s"><span class="pl-pds">'</span>1:1<span class="pl-pds">'</span></span>, entry3: <span class="pl-s"><span class="pl-pds">'</span>1:2<span class="pl-pds">'</span></span> }</pre></div>
 
 <hr>
 
@@ -511,47 +517,47 @@ The value <span class="pl-s1"><span class="pl-pds">'</span>2<span class="pl-pds"
 <h4>
 <a id="example-simple-usage" class="anchor" href="#example-simple-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> utils <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="pl-s">var</span> obj1 <span class="pl-k">=</span> {
-    <span class="pl-s1"><span class="pl-pds">"</span>entry1<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>],
-    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">5</span>, <span class="pl-c1">6</span>],
-    <span class="pl-s1"><span class="pl-pds">"</span>entry4<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>,
-    <span class="pl-s1"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
-        <span class="pl-s1"><span class="pl-pds">"</span>entry6<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">22</span>,
-        <span class="pl-s1"><span class="pl-pds">"</span>entry7<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">24</span>,
-        <span class="pl-s1"><span class="pl-pds">"</span>entry8<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
-            <span class="pl-s1"><span class="pl-pds">"</span>entry9<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">9</span>
+<span class="pl-k">var</span> obj1 <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>entry1<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>],
+    <span class="pl-s"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">5</span>, <span class="pl-c1">6</span>],
+    <span class="pl-s"><span class="pl-pds">"</span>entry4<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s"><span class="pl-pds">"</span>entry6<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">22</span>,
+        <span class="pl-s"><span class="pl-pds">"</span>entry7<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">24</span>,
+        <span class="pl-s"><span class="pl-pds">"</span>entry8<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s"><span class="pl-pds">"</span>entry9<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">9</span>
         }
     }
 };
 
-<span class="pl-s">var</span> obj2 <span class="pl-k">=</span> {
-    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">8</span>, <span class="pl-c1">9</span>],
-    <span class="pl-s1"><span class="pl-pds">"</span>entry3<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>,
-    <span class="pl-s1"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
-        <span class="pl-s1"><span class="pl-pds">"</span>entry7<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">21</span>,
-        <span class="pl-s1"><span class="pl-pds">"</span>entry10<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">11</span>
+<span class="pl-k">var</span> obj2 <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">8</span>, <span class="pl-c1">9</span>],
+    <span class="pl-s"><span class="pl-pds">"</span>entry3<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s"><span class="pl-pds">"</span>entry7<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">21</span>,
+        <span class="pl-s"><span class="pl-pds">"</span>entry10<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">11</span>
     }
 };
 
-<span class="pl-s">var</span> srcObj <span class="pl-k">=</span> {
-    <span class="pl-s1"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>,
-    <span class="pl-s1"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">7</span>],
-    <span class="pl-s1"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
-        <span class="pl-s1"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>zero<span class="pl-pds">"</span></span>
+<span class="pl-k">var</span> srcObj <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>entry2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-c1">7</span>],
+    <span class="pl-s"><span class="pl-pds">"</span>entry5<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s"><span class="pl-pds">"</span>entry0<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>zero<span class="pl-pds">"</span></span>
     }
 };
 
 utils.deepExtend(srcObj, [obj1, obj2]);
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(srcObj);</pre></div>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(srcObj);</pre></div>
 
 <p>Output:</p>
 
 <div class="highlight highlight-shell"><pre>{ entry0: 0,
   entry2: [ 7, 5, 6, 8, 9 ],
   entry5:
-   { entry0: <span class="pl-s1"><span class="pl-pds">'</span>zero<span class="pl-pds">'</span></span>,
+   { entry0: <span class="pl-s"><span class="pl-pds">'</span>zero<span class="pl-pds">'</span></span>,
      entry6: 22,
      entry7: 21,
      entry8: { entry9: 9 },
@@ -563,11 +569,11 @@ utils.deepExtend(srcObj, [obj1, obj2]);
 <h4>
 <a id="example-use-with-replace" class="anchor" href="#example-use-with-replace" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Use with replace</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
-<span class="pl-s">var</span> result;
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> utils <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
+<span class="pl-k">var</span> result;
 
 result <span class="pl-k">=</span> utils.deepExtend({}, [obj1, obj2], { replace<span class="pl-k">:</span> <span class="pl-c1">true</span> });
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(result);</pre></div>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(result);</pre></div>
 
 <p>Output:</p>
 
@@ -598,21 +604,21 @@ result <span class="pl-k">=</span> utils.deepExtend({}, [obj1, obj2], { replace<
 <h4>
 <a id="example-simple-usage-1" class="anchor" href="#example-simple-usage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> utils <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>));
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(utils.combine(<span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>));
 <span class="pl-c">// Output: -</span>
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test1<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test2<span class="pl-pds">'</span></span>));
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(utils.combine(<span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>test1<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>test2<span class="pl-pds">'</span></span>));
 <span class="pl-c">// Output: test1-test2</span>
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>-test1-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>-test2-<span class="pl-pds">'</span></span>));
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(utils.combine(<span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>-test1-<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>-test2-<span class="pl-pds">'</span></span>));
 <span class="pl-c">// Output: -test1-test2-</span>
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test1-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test2<span class="pl-pds">'</span></span>));
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(utils.combine(<span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>test1-<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>test2<span class="pl-pds">'</span></span>));
 <span class="pl-c">// Output: test1-test2</span>
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(utils.combine(<span class="pl-s1"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test1<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>-test2<span class="pl-pds">'</span></span>));
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(utils.combine(<span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>test1<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>-test2<span class="pl-pds">'</span></span>));
 <span class="pl-c">// Output: test1-test2</span></pre></div>
 
 <hr>
@@ -634,46 +640,46 @@ result <span class="pl-k">=</span> utils.deepExtend({}, [obj1, obj2], { replace<
 <h4>
 <a id="example-simple-usage-2" class="anchor" href="#example-simple-usage-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> utils <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="pl-s">var</span> newFn <span class="pl-k">=</span> utils.superWrapper(<span class="pl-st">function</span> (<span class="pl-vpf">value</span>) {
+<span class="pl-k">var</span> newFn <span class="pl-k">=</span> utils.superWrapper(<span class="pl-k">function</span> (<span class="pl-smi">value</span>) {
     <span class="pl-v">this</span>.__super(<span class="pl-c1">123</span>, value);
-    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Method test in object 2 and value <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value);
-}, <span class="pl-st">function</span> (<span class="pl-vpf">value1</span>, <span class="pl-vpf">value2</span>) {
-    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Method test in object 1 and values <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value1 <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span> and <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value2);
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Method test in object 2 and value <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value);
+}, <span class="pl-k">function</span> (<span class="pl-smi">value1</span>, <span class="pl-smi">value2</span>) {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Method test in object 1 and values <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value1 <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> and <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value2);
 });
 newFn(<span class="pl-c1">88</span>);</pre></div>
 
 <p>Output:</p>
 
-<div class="highlight highlight-shell"><pre>Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 1 and values 123 and 88
-Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and value 88</pre></div>
+<div class="highlight highlight-shell"><pre>Method <span class="pl-c1">test</span> <span class="pl-k">in</span> object 1 and values 123 and 88
+Method <span class="pl-c1">test</span> <span class="pl-k">in</span> object 2 and value 88</pre></div>
 
 <h4>
 <a id="example-usage-with-extendapply" class="anchor" href="#example-usage-with-extendapply" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Usage with extendApply</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> utils <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="pl-s">var</span> obj1 <span class="pl-k">=</span> {
-    <span class="pl-en">test</span>: <span class="pl-st">function</span> (<span class="pl-vpf">value1</span>, <span class="pl-vpf">value2</span>) {
-        <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Method test in object 1 and values <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value1 <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span> and <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value2);
+<span class="pl-k">var</span> obj1 <span class="pl-k">=</span> {
+    <span class="pl-en">test</span>: <span class="pl-k">function</span> (<span class="pl-smi">value1</span>, <span class="pl-smi">value2</span>) {
+        <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Method test in object 1 and values <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value1 <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> and <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value2);
     }
 };
 
-<span class="pl-s">var</span> obj2 <span class="pl-k">=</span> {
-    <span class="pl-en">test</span>: <span class="pl-st">function</span> (<span class="pl-vpf">value</span>) {
+<span class="pl-k">var</span> obj2 <span class="pl-k">=</span> {
+    <span class="pl-en">test</span>: <span class="pl-k">function</span> (<span class="pl-smi">value</span>) {
         <span class="pl-v">this</span>.__super(<span class="pl-c1">123</span>, value);
-        <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>Method test in object 2 and value <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value);
+        <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Method test in object 2 and value <span class="pl-pds">"</span></span> <span class="pl-k">+</span> value);
     }
 };
 
-<span class="pl-s">var</span> result <span class="pl-k">=</span> utils.extendApply(obj1, [obj2], utils.superWrapper);
-result.<span class="pl-s3">test</span>(<span class="pl-c1">88</span>);</pre></div>
+<span class="pl-k">var</span> result <span class="pl-k">=</span> utils.extendApply(obj1, [obj2], utils.superWrapper);
+result.<span class="pl-c1">test</span>(<span class="pl-c1">88</span>);</pre></div>
 
 <p>Output:</p>
 
-<div class="highlight highlight-shell"><pre>Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 1 and values 123 and 88
-Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and value 88</pre></div>
+<div class="highlight highlight-shell"><pre>Method <span class="pl-c1">test</span> <span class="pl-k">in</span> object 1 and values 123 and 88
+Method <span class="pl-c1">test</span> <span class="pl-k">in</span> object 2 and value 88</pre></div>
 
 <hr>
 
@@ -694,9 +700,9 @@ Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and
 <h4>
 <a id="example-simple-usage-3" class="anchor" href="#example-simple-usage-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Simple usage</h4>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> utils <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> utils <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>preceptor-core<span class="pl-pds">'</span></span>).utils;
 
-<span class="pl-s">var</span> configuration <span class="pl-k">=</span> utils.require(<span class="pl-s1"><span class="pl-pds">'</span>config<span class="pl-pds">'</span></span>, {});</pre></div>
+<span class="pl-k">var</span> configuration <span class="pl-k">=</span> utils.require(<span class="pl-s"><span class="pl-pds">'</span>config<span class="pl-pds">'</span></span>, {});</pre></div>
 
 <hr>
 
@@ -716,13 +722,13 @@ Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and
 
 <p>A new logger can be created by calling the <code>getLogger</code> method on the <code>log</code> object:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> logger <span class="pl-k">=</span> log.getLogger(<span class="pl-sv">__filename</span>);</pre></div>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> logger <span class="pl-k">=</span> log.getLogger(<span class="pl-c1">__filename</span>);</pre></div>
 
 <p>For each logger, a filename/identifier can be supplied that will be exported with each log trigger.</p>
 
 <p>When having a logger, then log entries can be triggered, including objects:</p>
 
-<div class="highlight highlight-javascript"><pre>logger.debug(<span class="pl-s1"><span class="pl-pds">'</span>Debug message: <span class="pl-pds">'</span></span>, { message<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>something something<span class="pl-pds">'</span></span> });</pre></div>
+<div class="highlight highlight-javascript"><pre>logger.debug(<span class="pl-s"><span class="pl-pds">'</span>Debug message: <span class="pl-pds">'</span></span>, { message<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>something something<span class="pl-pds">'</span></span> });</pre></div>
 
 <p>There are a couple of log-types available:</p>
 
@@ -742,7 +748,7 @@ Method <span class="pl-s3">test</span> <span class="pl-k">in</span> object 2 and
 
 <p>These log-types may be filtered depending on the log-level set. The log-levels can be requested and set with the following values:</p>
 
-<div class="highlight highlight-javascript"><pre>log.setLevel(<span class="pl-s1"><span class="pl-pds">'</span>DEBUG<span class="pl-pds">'</span></span>);
+<div class="highlight highlight-javascript"><pre>log.setLevel(<span class="pl-s"><span class="pl-pds">'</span>DEBUG<span class="pl-pds">'</span></span>);
 
 log.getLevel() <span class="pl-c">// -&gt; DEBUG</span></pre></div>
 
@@ -786,7 +792,7 @@ That means that the non-buffering mode needs to be activated. This can be done b
 
 <p>Run the tests with the following command:</p>
 
-<div class="highlight highlight-shell"><pre>npm run <span class="pl-s3">test</span></pre></div>
+<div class="highlight highlight-shell"><pre>npm run <span class="pl-c1">test</span></pre></div>
 
 <p>The code-coverage will be written to the <code>coverage</code> folder in the module root.</p>
 
@@ -811,6 +817,8 @@ That means that the non-buffering mode needs to be activated. This can be done b
 <ul>
 <li>chai: <a href="http://chaijs.com">http://chaijs.com</a>
 </li>
+<li>codeclimate-test-reporter: <a href="https://github.com/codeclimate/javascript-test-reporter">https://github.com/codeclimate/javascript-test-reporter</a>
+</li>
 <li>coveralls: <a href="https://github.com/cainus/node-coveralls">https://github.com/cainus/node-coveralls</a>
 </li>
 <li>istanbul: <a href="https://github.com/gotwarlost/istanbul">https://github.com/gotwarlost/istanbul</a>
@@ -832,12 +840,17 @@ That means that the non-buffering mode needs to be activated. This can be done b
 
 <p>Copyright 2014-2015 Yahoo Inc.</p>
       </section>
-      <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Preceptor-core maintained by <a href="https://github.com/yahoo">yahoo</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		          <script type="text/javascript">
+
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -847,6 +860,7 @@ That means that the non-buffering mode needs to be activated. This can be done b
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+
 
   </body>
 </html>
