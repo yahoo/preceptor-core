@@ -24,14 +24,14 @@
   },
   "dependencies": {
     "underscore": "1.7.0",
-    "log4js": "0.6.20"
+    "log4js": "1.1.1"
   },
   "devDependencies": {
     "chai": "1.9.2",
     "codeclimate-test-reporter": "0.0.4",
     "coveralls": "2.11.2",
-    "istanbul": "0.3.2",
-    "mocha": "1.21.4",
+    "istanbul": "0.4.5",
+    "mocha": "5.0.0",
     "sinon": "1.12.2",
     "sinon-chai": "2.7.0",
     "yuidocjs": "0.3.50"
